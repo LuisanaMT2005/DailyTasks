@@ -1,0 +1,19 @@
+{
+  "name": "Luisana",
+  "age": 18,
+  "country": "RD",
+  "siblings": 1,
+  "siblings_name": [
+    "Viannelys"
+  ],
+  "books": [
+    {
+      "title": "Harry Potter y la piedra filosofal",
+      "ranking": null
+    },
+    {
+      "title": "Orgullo y prejuicio",
+      "ranking": 10
+    }
+  ]
+}
