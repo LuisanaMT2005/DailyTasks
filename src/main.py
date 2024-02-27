@@ -34,7 +34,8 @@ def view_tasks():
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
-    print(tasks)
+    for task in tasks:
+        print(task)
 
 
 def modify_description(task_id, new_description):
@@ -45,8 +46,6 @@ def modify_description(task_id, new_description):
         if task['id'] == task_id:
             extracted_task = task
             break
-        else:
-            print("Task not found")
 
     task_index = tasks.index(extracted_task)
 
@@ -67,8 +66,6 @@ def modify_priority(task_id, new_priority):
         if task['id'] == task_id:
             extracted_task = task
             break
-        else:
-            print("Task not found")
 
     task_index = tasks.index(extracted_task)
 
@@ -89,8 +86,6 @@ def modify_due_date(task_id, new_due_date):
         if task['id'] == task_id:
             extracted_task = task
             break
-        else:
-            print("Task not found")
 
     task_index = tasks.index(extracted_task)
 
@@ -111,8 +106,6 @@ def modify_status(task_id, new_status):
         if task['id'] == task_id:
             extracted_task = task
             break
-        else:
-            print("Task not found")
 
     task_index = tasks.index(extracted_task)
 
@@ -125,11 +118,71 @@ def modify_status(task_id, new_status):
         json.dump(tasks, tasks_file_write, indent=2)
 
 
+def delete_done_tasks():
+    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+        tasks = json.load(reading_tasks_file)
+
+    for task in tasks:
+        if task['status'] == "Done" or task['status'] == "done":
+            task_index = tasks.index(task)
+            tasks.pop(task_index)
+    
+    with open('Tasks.json', 'w', encoding='utf-8') as writing_tasks_file:
+        json.dump(tasks, writing_tasks_file, indent=2)
+
+
+def delete_task(task_id):
+    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+        tasks = json.load(reading_tasks_file)
+
+    for task in tasks:
+        if task['id'] == task_id:
+            task_index = tasks.index(task)
+            tasks.pop(task_index)
+        else:
+            print("No task with the passed id")
+
+    with open('Tasks.json', 'w', encoding='utf-8') as writing_tasks_file:
+        json.dump(tasks, writing_tasks_file, indent=2)
+
+
+def filter_tasks_by_priority(priority):
+    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+        tasks = json.load(reading_tasks_file)
+
+    for task in tasks:
+        if task['priority'] == priority:
+            print(task)
+
+
+def filter_tasks_by_due_date(due_date):
+    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+        tasks = json.load(reading_tasks_file)
+
+    for task in tasks:
+        if task['due_date'] == due_date:
+            print(task)
+
+
+def filter_tasks_by_status(status):
+    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+        tasks = json.load(reading_tasks_file)
+
+    for task in tasks:
+        if task['status'] == status:
+            print(task)
+
+
 ### TESTS ###
 #initialize_tasks_file()
 #add_tasks("First task", "M", "28/2/2024")
 #view_tasks()
 #modify_description(1, "Change task")
 #modify_priority(1, "H")
-#modify_due_date(1, "2024/2/29")
+#modify_due_date(1, "2024-2-29")
 #modify_status(1, "In progress")
+#delete_done_tasks()
+#delete_task(1)
+#filter_tasks_by_priority("H")
+#filter_tasks_by_due_date("2024/2/29")
+#filter_tasks_by_status("Done")
