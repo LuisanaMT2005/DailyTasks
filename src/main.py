@@ -6,35 +6,130 @@ import json
 #TODO: Integrar el modulo Click para la interfaz de uso.
 
 tasks_structure = {
-    "task_n": {
-        "description": "",
-        "priority": "",
-        "due_date": "",
-        "status": ""
-    }
+    "id": "",
+    "description": "",
+    "priority": "",
+    "due_date": "",
+    "status": ""
 }
 
-def add_tasks(description, priority, due_date, status):
-    with open('user_tasks.json', 'r', encoding= 'utf-8') as tasks_file:
-        try:
-            tasks = json.loads(tasks_file.read())
-            amount_of_tasks = len(tasks.keys())
-            task = {
-            "task_%d" % (amount_of_tasks + 1): {
-                "description": "%s" % (description),
-                "priority": "%s" % (priority),
-                "due_date": "%s" % (due_date),
-                "status": "%s" % (status)
-                }
-            }
-            new_tasks_file = tasks.update(task)
-            tasks_file_w_mode = open('user_tasks.json', 'w', encoding= 'utf-8')
-            tasks_file_w_mode.write(json.dumps(new_tasks_file, indent=2))
-            tasks_file_w_mode.close()
-        except AttributeError:
-            tasks_file_a_mode = open('user_tasks.json', 'a', encoding= 'utf-8')
-            tasks_file_a_mode.write(json.dumps(task, indent=2))
+def initialize_tasks_file():
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file:
+        json.dump([], tasks_file)
 
-         #!TODO: Ver como puedo ampliar el objeto JSON, probar cargando el archivo de tareas y luego actualizar el diccionario con el método .update.
 
-add_tasks("First task", "M", "28/2/2024", "TO-DO")
+def add_tasks(description, priority, due_date):
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+        tasks = json.load(tasks_file_read)
+
+    amount_of_tasks = len(tasks)
+    task_id = amount_of_tasks + 1
+    tasks.append({"id": task_id,"description": "%s" % (description),"priority": "%s" % (priority),"due_date": "%s" % (due_date), "status": ""})
+    
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+        json.dump(tasks, tasks_file_write, indent=2)
+
+
+def view_tasks():
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
+        tasks = json.load(tasks_file)
+
+    print(tasks)
+
+
+def modify_description(task_id, new_description):
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+        tasks = json.load(tasks_file_read)
+
+    for task in tasks:
+        if task['id'] == task_id:
+            extracted_task = task
+            break
+        else:
+            print("Task not found")
+
+    task_index = tasks.index(extracted_task)
+
+    extracted_task['description'] = new_description
+
+    tasks.pop(task_index)
+    tasks.insert(task_index, extracted_task)
+
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+        json.dump(tasks, tasks_file_write, indent=2)
+
+
+def modify_priority(task_id, new_priority):
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+        tasks = json.load(tasks_file_read)
+
+    for task in tasks:
+        if task['id'] == task_id:
+            extracted_task = task
+            break
+        else:
+            print("Task not found")
+
+    task_index = tasks.index(extracted_task)
+
+    extracted_task['priority'] = new_priority
+
+    tasks.pop(task_index)
+    tasks.insert(task_index, extracted_task)
+
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+        json.dump(tasks, tasks_file_write, indent=2)
+
+
+def modify_due_date(task_id, new_due_date):
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+        tasks = json.load(tasks_file_read)
+
+    for task in tasks:
+        if task['id'] == task_id:
+            extracted_task = task
+            break
+        else:
+            print("Task not found")
+
+    task_index = tasks.index(extracted_task)
+
+    extracted_task['due_date'] = new_due_date
+
+    tasks.pop(task_index)
+    tasks.insert(task_index, extracted_task)
+
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+        json.dump(tasks, tasks_file_write, indent=2)
+
+
+def modify_status(task_id, new_status):
+    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+        tasks = json.load(tasks_file_read)
+
+    for task in tasks:
+        if task['id'] == task_id:
+            extracted_task = task
+            break
+        else:
+            print("Task not found")
+
+    task_index = tasks.index(extracted_task)
+
+    extracted_task['status'] = new_status
+
+    tasks.pop(task_index)
+    tasks.insert(task_index, extracted_task)
+
+    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+        json.dump(tasks, tasks_file_write, indent=2)
+
+
+### TESTS ###
+#initialize_tasks_file()
+#add_tasks("First task", "M", "28/2/2024")
+#view_tasks()
+#modify_description(1, "Change task")
+#modify_priority(1, "H")
+#modify_due_date(1, "2024/2/29")
+#modify_status(1, "In progress")
