@@ -1,9 +1,9 @@
 import json
 
 
+#TODO: Modularizar las funciones.
 #TODO: Leer los errores que se pueden generar usando el modulo JSON e intentar generar los errores apropósito durante el testing para ver si se generan, y manejarlos (try...except) si ocurren.
-#TODO: Integrar la clase date de el modulo datetime para la due_date.
-#TODO: Integrar el modulo Click para la interfaz de uso.
+#TODO: Integrar el modulo Click para la interfaz de uso (Integrar la clase datetime de el modulo datetime para la due_date).
 
 tasks_structure = {
     "id": "",
