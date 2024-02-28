@@ -14,23 +14,34 @@ tasks_structure = {
 }
 
 def initialize_tasks_file():
+    """Initialize tasks file"""
     with open('Tasks.json', 'w', encoding='utf-8') as tasks_file:
         json.dump([], tasks_file)
 
 
-def add_tasks(description, priority, due_date):
+def add_task(description, priority, due_date):
+    """Add a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     amount_of_tasks = len(tasks)
     task_id = amount_of_tasks + 1
-    tasks.append({"id": task_id,"description": "%s" % (description),"priority": "%s" % (priority),"due_date": "%s" % (due_date), "status": ""})
+    tasks.append(
+        {
+            "id": task_id,
+            "description": f"{description}",
+            "priority": f"{priority}",
+            "due_date": f"{due_date}",
+            "status": ""
+        }
+    )
     
     with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
 def view_tasks():
+    """View all your tasks"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
@@ -39,6 +50,7 @@ def view_tasks():
 
 
 def modify_description(task_id, new_description):
+    """Modify description of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -59,6 +71,7 @@ def modify_description(task_id, new_description):
 
 
 def modify_priority(task_id, new_priority):
+    """Modify priority of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -79,6 +92,7 @@ def modify_priority(task_id, new_priority):
 
 
 def modify_due_date(task_id, new_due_date):
+    """Modify due date of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -99,6 +113,7 @@ def modify_due_date(task_id, new_due_date):
 
 
 def modify_status(task_id, new_status):
+    """Modify status of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -119,6 +134,7 @@ def modify_status(task_id, new_status):
 
 
 def delete_done_tasks():
+    """Delete all your done tasks"""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -132,6 +148,7 @@ def delete_done_tasks():
 
 
 def delete_task(task_id):
+    """Delete a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -147,6 +164,7 @@ def delete_task(task_id):
 
 
 def filter_tasks_by_priority(priority):
+    """Filter your tasks by priority"""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -156,6 +174,7 @@ def filter_tasks_by_priority(priority):
 
 
 def filter_tasks_by_due_date(due_date):
+    """Filter your tasks by due date"""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -165,6 +184,7 @@ def filter_tasks_by_due_date(due_date):
 
 
 def filter_tasks_by_status(status):
+    """Filter your tasks by status"""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -175,7 +195,7 @@ def filter_tasks_by_status(status):
 
 ### TESTS ###
 #initialize_tasks_file()
-#add_tasks("First task", "M", "28/2/2024")
+#add_task("First task", "M", "28/2/2024")
 #view_tasks()
 #modify_description(1, "Change task")
 #modify_priority(1, "H")
