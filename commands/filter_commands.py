@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 
@@ -18,8 +19,10 @@ def filter_tasks_by_due_date(due_date):
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
+    due_date_date_object = due_date.date()
+
     for task in tasks:
-        if task['due_date'] == due_date:
+        if task['due_date'] == due_date_date_object:
             print(task)
 
 
