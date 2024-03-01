@@ -7,7 +7,7 @@ def delete_done_tasks():
         tasks = json.load(reading_tasks_file)
 
     for task in tasks:
-        if task['status'] == "Done" or task['status'] == "done":
+        if task['status'] == "Done":
             task_index = tasks.index(task)
             tasks.pop(task_index)
     
