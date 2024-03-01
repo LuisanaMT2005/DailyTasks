@@ -31,13 +31,15 @@ def add_task(description, priority, due_date, status):
 
     amount_of_tasks = len(tasks)
     task_id = amount_of_tasks + 1
+    priority_upper = priority.upper()
+    status_capitalize = status.capitalize()
     tasks.append(
         {
             "id": task_id,
             "description": f"{description}",
-            "priority": f"{priority}",
+            "priority": f"{priority_upper}",
             "due_date": f"{due_date}",
-            "status": f"{status}"
+            "status": f"{status_capitalize}"
         }
     )
     
@@ -57,17 +59,17 @@ def view_tasks():
 
 ### TESTS ###
 #initialize_tasks_file()
-#add_task("First task", "M", "28/2/2024")
+#add_task("First task", "m", "28/2/2024")
 #view_tasks()
 #modify_description(1, "Change task")
-#modify_priority(1, "H")
+#modification_commands.modify_priority(1, "H")
 #modify_due_date(1, "2024-2-29")
-#modify_status(1, "In progress")
+#modification_commands.modify_status(1, "In progress")
 #delete_done_tasks()
 #delete_task(1)
-#filter_tasks_by_priority("H")
+#filter_commands.filter_tasks_by_priority("H")
 #filter_tasks_by_due_date("2024/2/29")
-#filter_tasks_by_status("Done")
+#filter_commands.filter_tasks_by_status("Done")
 
 if __name__ == '__main__':
     daily_tasks()

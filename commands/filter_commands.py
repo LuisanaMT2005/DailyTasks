@@ -6,8 +6,10 @@ def filter_tasks_by_priority(priority):
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
+    priority_upper = priority.upper()
+
     for task in tasks:
-        if task['priority'] == priority:
+        if task['priority'] == priority_upper:
             print(task)
 
 
@@ -26,7 +28,8 @@ def filter_tasks_by_status(status):
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
+    status_capitalize = status.capitalize()
     for task in tasks:
-        if task['status'] == status:
+        if task['status'] == status_capitalize:
             print(task)
 

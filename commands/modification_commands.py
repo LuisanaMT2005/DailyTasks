@@ -34,7 +34,8 @@ def modify_priority(task_id, new_priority):
 
     task_index = tasks.index(extracted_task)
 
-    extracted_task['priority'] = new_priority
+    new_priority_upper = new_priority.upper()
+    extracted_task['priority'] = new_priority_upper
 
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
@@ -76,7 +77,8 @@ def modify_status(task_id, new_status):
 
     task_index = tasks.index(extracted_task)
 
-    extracted_task['status'] = new_status
+    new_status_capitalize = new_status.capitalize()
+    extracted_task['status'] = new_status_capitalize
 
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
