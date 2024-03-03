@@ -59,18 +59,14 @@ def add_task(description, priority, due_date, status):
 
     amount_of_tasks = len(tasks)
     task_id = amount_of_tasks + 1
-
     priority_upper = priority.upper()
-    due_date_date_object = due_date.date()
-    status_capitalize = status.capitalize()
-    
     tasks.append(
         {
             "id": task_id,
             "description": f"{description}",
             "priority": f"{priority_upper}",
-            "due_date": f"{due_date_date_object}",
-            "status": f"{status_capitalize}"
+            "due_date": f"{due_date}",
+            "status": ""
         }
     )
     
@@ -80,9 +76,8 @@ def add_task(description, priority, due_date, status):
     return tasks[-1]
 
 
-@daily_tasks.command
 def view_tasks():
-    """Shows you all your tasks"""
+    """View all your tasks"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
