@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 
@@ -56,7 +57,9 @@ def modify_due_date(task_id, new_due_date):
 
     task_index = tasks.index(extracted_task)
 
-    extracted_task['due_date'] = new_due_date
+    new_due_date_date_object = new_due_date.date()
+
+    extracted_task['due_date'] = new_due_date_date_object
 
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
