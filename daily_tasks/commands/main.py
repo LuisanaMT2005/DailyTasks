@@ -1,5 +1,5 @@
 import click as ck
-from daily_tasks.commands.main_commands import create_tasks_file, add_task
+from daily_tasks.commands.main_commands import create_tasks_file, add_task, view_tasks
 
 
 @ck.group
@@ -8,3 +8,4 @@ def daily_tasks() -> None:
 
 daily_tasks.add_command(create_tasks_file)
 daily_tasks.add_command(add_task)
+daily_tasks.add_command(view_tasks)

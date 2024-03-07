@@ -62,11 +62,92 @@ def add_task(description, priority, due_date, status):
 
     return tasks[-1]
 
-
+@ck.command
 def view_tasks():
     """View all your tasks"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:
-        print(task)
+
+        task_id = task['id']
+        description = task['description']
+        priority = task['priority']
+        due_date = task['due_date']
+        status = task['status']
+
+        if priority == utilities.PRIORITIES[0]:
+            if status == utilities.STATUS[0]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='red', bold=True),
+                    ck.style(text=status, fg='red'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            elif status == utilities.STATUS[1]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='red', bold=True),
+                    ck.style(text=status, fg='yellow'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            else:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='red', bold=True),
+                    ck.style(text=status, fg='green'),
+                    ck.style(text=due_date, bold=True)
+                ))
+        elif priority == utilities.PRIORITIES[1]:
+            if status == utilities.STATUS[0]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='yellow', bold=True),
+                    ck.style(text=status, fg='red'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            elif status == utilities.STATUS[1]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='yellow', bold=True),
+                    ck.style(text=status, fg='yellow'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            else:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='yellow', bold=True),
+                    ck.style(text=status, fg='green'),
+                    ck.style(text=due_date, bold=True)
+                ))
+        else:
+            if status == utilities.STATUS[0]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='white', bold=True),
+                    ck.style(text=status, fg='red'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            elif status == utilities.STATUS[1]:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='white', bold=True),
+                    ck.style(text=status, fg='yellow'),
+                    ck.style(text=due_date, bold=True)
+                ))
+            else:
+                ck.echo('{}. {} - {} - {} - {}'.format(
+                    ck.style(text=task_id, fg='black'),
+                    description,
+                    ck.style(text=priority, fg='white', bold=True),
+                    ck.style(text=status, fg='green'),
+                    ck.style(text=due_date, bold=True)
+                ))
