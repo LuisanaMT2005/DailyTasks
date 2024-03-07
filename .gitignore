@@ -4,3 +4,4 @@ pruebas_click/
 datetime_with_click_try.json
 __pycache__/
 datetime_to_date.py
+*.egg-info/
