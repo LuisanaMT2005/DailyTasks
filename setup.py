@@ -12,7 +12,13 @@ setup(
     author="LuisanaMT",
     author_email="luisanamartineztorres25@gmail.com",
     license="Apache-2.0",
-    classifiers=["CLI"],
+    classifiers=[
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 3.11',
+        'Topic :: Utilities'
+    ],
     install_requires=install_requires,
     packages=find_packages(),
     include_package_data=True,
