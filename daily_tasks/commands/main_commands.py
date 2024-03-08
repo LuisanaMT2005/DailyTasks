@@ -1,11 +1,11 @@
 """Main commands of this CLI"""
 import json
 import click as ck
-import daily_tasks.commands.utilities as utilities
+from daily_tasks.commands import utilities
 
 
 @ck.command
-def create_tasks_file():
+def create_tasks_file() -> None:
     """Create the tasks file (it will be empty)."""
     with open('Tasks.json', 'w', encoding='utf-8') as tasks_file:
         json.dump([], tasks_file)
@@ -32,7 +32,7 @@ def create_tasks_file():
            help="Choose a status to your task.",
            default=utilities.STATUS[3]
            )
-def add_task(description, priority, due_date, status):
+def add_task(description, priority, due_date, status) -> None:
     """Create a new task"""
 
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
@@ -60,10 +60,8 @@ def add_task(description, priority, due_date, status):
     with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
-    return tasks[-1]
-
 @ck.command
-def view_tasks():
+def view_tasks() -> None:
     """View all your tasks"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
