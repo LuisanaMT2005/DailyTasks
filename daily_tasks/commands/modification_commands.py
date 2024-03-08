@@ -1,8 +1,19 @@
+from daily_tasks.commands import utilities
 from datetime import datetime # pylint: disable=unused-import
 import json
+import click as ck
 
 
-def modify_description(task_id, new_description):
+@ck.command
+@ck.option('-id', '--task-id',
+           required=True,
+           type=ck.INT
+           )
+@ck.option('-d', '--new-description',
+           required=True,
+           type=ck.STRING
+           )
+def modify_description(task_id, new_description) -> None:
     """Modify description of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
@@ -14,7 +25,7 @@ def modify_description(task_id, new_description):
 
     task_index = tasks.index(extracted_task)
 
-    extracted_task['description'] = new_description
+    extracted_task['description'] = new_description.capitalize()
 
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
@@ -23,6 +34,15 @@ def modify_description(task_id, new_description):
         json.dump(tasks, tasks_file_write, indent=2)
 
 
+@ck.command
+@ck.option('-id', '--task-id',
+           required=True,
+           type=ck.INT
+           )
+@ck.option('-p', '--new-priority',
+           required=True,
+           type=ck.Choice(utilities.PRIORITIES, case_sensitive=False)
+           )
 def modify_priority(task_id, new_priority):
     """Modify priority of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
@@ -45,6 +65,7 @@ def modify_priority(task_id, new_priority):
         json.dump(tasks, tasks_file_write, indent=2)
 
 
+# TO-DO
 def modify_due_date(task_id, new_due_date):
     """Modify due date of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
