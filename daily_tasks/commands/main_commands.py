@@ -6,7 +6,7 @@ from daily_tasks.commands import utilities
 
 
 @ck.command
-@ck.option('-f', '--task_file_name',
+@ck.option('-f', '--file_name',
            required=True,
            type=ck.STRING,
            help="Name your task file."
@@ -37,15 +37,15 @@ def create_tasks_file(file_name) -> None:
            help="Choose a status to your task.",
            default=utilities.STATUS[3]
            )
-@ck.option('-f', '--task_file_name',
+@ck.option('-f', '--file_name',
            required=True,
            type=ck.STRING,
            help="Name your task file."
            )
-def add_task(description, priority, due_date, status, task_data_file) -> None:
+def add_task(description, priority, due_date, status, file_name) -> None:
     """Create a new task"""
 
-    with open(task_data_file, 'r', encoding='utf-8') as tasks_file_read:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     amount_of_tasks = len(tasks)
@@ -72,14 +72,14 @@ def add_task(description, priority, due_date, status, task_data_file) -> None:
 
 
 @ck.command
-@ck.option('-f', '--task_file_name',
+@ck.option('-f', '--file_name',
            required=True,
            type=ck.STRING,
            help="Name your task file."
            )
-def view_tasks(task_file_name) -> None:
+def view_tasks(file_name) -> None:
     """View all your tasks"""
-    with open(task_file_name, 'r', encoding='utf-8') as tasks_file:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:
