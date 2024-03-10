@@ -7,6 +7,7 @@ from daily_tasks.commands.modification_commands import modify_description, modif
 def daily_tasks() -> None:
     """A tasks manager for those who like work from shell."""
 
+
 daily_tasks.add_command(create_tasks_file)
 daily_tasks.add_command(add_task)
 daily_tasks.add_command(view_tasks)
