@@ -1,20 +1,25 @@
 """Main commands of this CLI"""
 import json
+
 import click as ck
 from daily_tasks.commands import utilities
 
 
 @ck.command
-def create_tasks_file() -> None:
+@ck.option('-f', '--file_name',
+           required=True,
+           type=ck.STRING,
+           help="Name your task file."
+           )
+def create_tasks_file(file_name) -> None:
     """Create the tasks file (it will be empty)."""
-    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file:
+    with open(file_name, 'w', encoding='utf-8') as tasks_file:
         json.dump([], tasks_file)
-
 
 @ck.command
 @ck.option('-d', '--description',
-           required=True, 
-           type=ck.STRING, 
+           required=True,
+           type=ck.STRING,
            help="Describe your task."
            )
 @ck.option('-p', '--priority',
@@ -32,10 +37,15 @@ def create_tasks_file() -> None:
            help="Choose a status to your task.",
            default=utilities.STATUS[3]
            )
-def add_task(description, priority, due_date, status) -> None:
+@ck.option('-f', '--file_name',
+           required=True,
+           type=ck.STRING,
+           help="Name your task file."
+           )
+def add_task(description, priority, due_date, status, file_name) -> None:
     """Create a new task"""
 
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     amount_of_tasks = len(tasks)
@@ -60,10 +70,16 @@ def add_task(description, priority, due_date, status) -> None:
     with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
+
 @ck.command
-def view_tasks() -> None:
+@ck.option('-f', '--file_name',
+           required=True,
+           type=ck.STRING,
+           help="Name your task file."
+           )
+def view_tasks(file_name) -> None:
     """View all your tasks"""
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:
