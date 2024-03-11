@@ -7,9 +7,10 @@ from daily_tasks.commands import utilities
 
 @ck.command
 @ck.option('-f', '--file_name',
-           required=True,
+           required=False,
            type=ck.STRING,
-           help="Name your task file."
+           default='tasks.json',
+           help="Name your task file, it's need to end with .json file extension."
            )
 def create_tasks_file(file_name) -> None:
     """Create the tasks file (it will be empty)."""
@@ -38,9 +39,10 @@ def create_tasks_file(file_name) -> None:
            default=utilities.STATUS[3]
            )
 @ck.option('-f', '--file_name',
-           required=True,
+           required=False,
            type=ck.STRING,
-           help="Name your task file."
+           default='tasks.json',
+           help="Name your task file, it's need to end with .json file extension."
            )
 def add_task(description, priority, due_date, status, file_name) -> None:
     """Create a new task"""
@@ -73,9 +75,10 @@ def add_task(description, priority, due_date, status, file_name) -> None:
 
 @ck.command
 @ck.option('-f', '--file_name',
-           required=True,
+           required=False,
            type=ck.STRING,
-           help="Name your task file."
+           default='tasks.json',
+           help="Name your task file, it's need to end with .json file extension."
            )
 def view_tasks(file_name) -> None:
     """View all your tasks"""
