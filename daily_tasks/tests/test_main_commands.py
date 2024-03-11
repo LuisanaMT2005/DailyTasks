@@ -35,8 +35,6 @@ def test_view_tasks():
 
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
 
-
-if __name__ == '__main__':
-    test_create_tasks_file()
-    test_add_task()
-    test_view_tasks()
+test_create_tasks_file()
+test_add_task()
+test_view_tasks()
