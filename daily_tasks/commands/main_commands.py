@@ -14,7 +14,7 @@ from daily_tasks.commands import utilities
            )
 def create_tasks_file(file_name) -> None:
     """Create the tasks file (it will be empty)."""
-    with open(f'./daily_tasks/{file_name}', 'w', encoding='utf-8') as tasks_file:
+    with open(file_name, 'w', encoding='utf-8') as tasks_file:
         json.dump([], tasks_file)
 
 @ck.command
@@ -47,7 +47,7 @@ def create_tasks_file(file_name) -> None:
 def add_task(description, priority, due_date, status, file_name) -> None:
     """Create a new task"""
 
-    with open(f'./daily_tasks/{file_name}', 'r', encoding='utf-8') as tasks_file_read:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     amount_of_tasks = len(tasks)
@@ -69,7 +69,7 @@ def add_task(description, priority, due_date, status, file_name) -> None:
         }
     )
 
-    with open(f'./daily_tasks/{file_name}', 'w', encoding='utf-8') as tasks_file_write:
+    with open(file_name, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
@@ -82,7 +82,7 @@ def add_task(description, priority, due_date, status, file_name) -> None:
            )
 def view_tasks(file_name) -> None:
     """View all your tasks"""
-    with open(f'./daily_tasks/{file_name}', 'r', encoding='utf-8') as tasks_file:
+    with open(file_name, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:

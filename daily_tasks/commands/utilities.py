@@ -17,12 +17,13 @@ def get_due_date_default_value() -> str:
     return today_date_str_formatted
 
 def check_if_a_json_file_exist() -> str:
-    files = listdir('./daily_tasks/')
+    files = listdir('.')
 
     for file in files:
         if file.endswith('.json'):
             tasks_file = file
             break
+        tasks_file = None
         continue
 
     return tasks_file
