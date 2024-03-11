@@ -20,7 +20,8 @@ setup(
         'Topic :: Utilities'
     ],
     install_requires=install_requires,
-    packages=find_packages(),
+    packages=find_packages(where='daily_tasks', exclude=['tests']),
+    package_dir={'': 'daily_tasks'},
     include_package_data=True,
     python_requires=">=3.11",
     entry_points={
