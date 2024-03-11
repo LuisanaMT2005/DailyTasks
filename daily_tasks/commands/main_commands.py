@@ -41,8 +41,8 @@ def create_tasks_file(file_name) -> None:
 @ck.option('-f', '--file_name',
            required=False,
            type=ck.STRING,
-           default='tasks.json',
-           help="Name your task file, it's need to end with .json file extension."
+           default=utilities.check_if_a_json_file_exist(),
+           help="Name your task file, take into account that if the file doesn't exist, this command won't create the task."
            )
 def add_task(description, priority, due_date, status, file_name) -> None:
     """Create a new task"""
@@ -77,8 +77,8 @@ def add_task(description, priority, due_date, status, file_name) -> None:
 @ck.option('-f', '--file_name',
            required=False,
            type=ck.STRING,
-           default='tasks.json',
-           help="Name your task file, it's need to end with .json file extension."
+           default=utilities.check_if_a_json_file_exist(),
+           help="Name your task file, take into account that if the file doesn't exist, this command won't show your tasks."
            )
 def view_tasks(file_name) -> None:
     """View all your tasks"""
