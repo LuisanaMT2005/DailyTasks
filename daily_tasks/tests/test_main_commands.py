@@ -9,7 +9,6 @@ def test_create_tasks_file():
     result = runner.invoke(create_tasks_file, ['--file_name', test_task_data_file])
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
 
-
 def test_add_task():
     runner = CliRunner()
 
@@ -37,5 +36,7 @@ def test_view_tasks():
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
 
 
-
-
+if __name__ == '__main__':
+    test_create_tasks_file()
+    test_add_task()
+    test_view_tasks()
