@@ -65,7 +65,15 @@ def modify_priority(task_id, new_priority):
         json.dump(tasks, tasks_file_write, indent=2)
 
 
-# TO-DO
+@ck.command
+@ck.option('-id', '--task-id',
+           required=True,
+           type=ck.INT
+           )
+@ck.option('-dd', '--new-due-date',
+           required=True,
+           type=ck.DateTime(formats=utilities.DUE_DATE_FORMAT)
+           )
 def modify_due_date(task_id, new_due_date):
     """Modify due date of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
@@ -79,8 +87,9 @@ def modify_due_date(task_id, new_due_date):
     task_index = tasks.index(extracted_task)
 
     new_due_date_date_object = new_due_date.date()
+    new_due_date_formatted = new_due_date_date_object.strftime(utilities.DUE_DATE_FORMAT[0])
 
-    extracted_task['due_date'] = new_due_date_date_object
+    extracted_task['due_date'] = new_due_date_formatted
 
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
@@ -89,6 +98,15 @@ def modify_due_date(task_id, new_due_date):
         json.dump(tasks, tasks_file_write, indent=2)
 
 
+@ck.command
+@ck.option('-id', '--task-id',
+           required=True,
+           type=ck.INT
+           )
+@ck.option('-s', '--new-status',
+           required=True,
+           type=ck.Choice(choices=utilities.STATUS, case_sensitive=False)
+           )
 def modify_status(task_id, new_status):
     """Modify status of a task"""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:

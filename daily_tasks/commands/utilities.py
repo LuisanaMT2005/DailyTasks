@@ -5,7 +5,7 @@ from os import listdir
 
 DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
-STATUS = ['To-do', 'In progress', 'Done', ' ']
+STATUS = ['To-do', 'In-progress', 'Done', ' ']
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
