@@ -3,7 +3,7 @@ import json
 
 
 def filter_tasks_by_priority(priority):
-    """Filter your tasks by priority"""
+    """Filter your tasks by priority."""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -15,7 +15,7 @@ def filter_tasks_by_priority(priority):
 
 
 def filter_tasks_by_due_date(due_date):
-    """Filter your tasks by due date"""
+    """Filter your tasks by due date."""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -27,7 +27,7 @@ def filter_tasks_by_due_date(due_date):
 
 
 def filter_tasks_by_status(status):
-    """Filter your tasks by status"""
+    """Filter your tasks by status."""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 

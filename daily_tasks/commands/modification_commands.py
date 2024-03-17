@@ -14,7 +14,7 @@ import click as ck
            type=ck.STRING
            )
 def modify_description(task_id, new_description) -> None:
-    """Modify description of a task"""
+    """Modify description of a task."""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -44,7 +44,7 @@ def modify_description(task_id, new_description) -> None:
            type=ck.Choice(utilities.PRIORITIES, case_sensitive=False)
            )
 def modify_priority(task_id, new_priority):
-    """Modify priority of a task"""
+    """Modify priority of a task."""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -75,7 +75,7 @@ def modify_priority(task_id, new_priority):
            type=ck.DateTime(formats=utilities.DUE_DATE_FORMAT)
            )
 def modify_due_date(task_id, new_due_date):
-    """Modify due date of a task"""
+    """Modify due date of a task."""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
@@ -108,7 +108,7 @@ def modify_due_date(task_id, new_due_date):
            type=ck.Choice(choices=utilities.STATUS, case_sensitive=False)
            )
 def modify_status(task_id, new_status):
-    """Modify status of a task"""
+    """Modify status of a task."""
     with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 

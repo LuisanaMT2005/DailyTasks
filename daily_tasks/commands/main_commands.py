@@ -45,7 +45,7 @@ def create_tasks_file(file_name) -> None:
            help="Name your task file, take into account that if the file doesn't exist, this command won't create the task."
            )
 def add_task(description, priority, due_date, status, file_name) -> None:
-    """Create a new task"""
+    """Create a new task."""
 
     with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
@@ -82,7 +82,7 @@ def add_task(description, priority, due_date, status, file_name) -> None:
            help="Name your task file, take into account that if the file doesn't exist, this command won't show your tasks."
            )
 def view_tasks(file_name) -> None:
-    """View all your tasks"""
+    """View all your tasks."""
     with open(file_name, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
