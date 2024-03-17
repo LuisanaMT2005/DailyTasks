@@ -50,8 +50,9 @@ def add_task(description, priority, due_date, status, file_name) -> None:
     with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
-    amount_of_tasks = len(tasks)
-    task_id = amount_of_tasks + 1
+    last_task = tasks[-1]
+    last_id = last_task['id']
+    new_id = last_id + 1
 
     priority_upper = priority.upper()
     status_capitalize = status.capitalize()
@@ -61,7 +62,7 @@ def add_task(description, priority, due_date, status, file_name) -> None:
 
     tasks.append(
         {
-            "id": task_id,
+            "id": new_id,
             "description": f"{description}",
             "priority": f"{priority_upper}",
             "due_date": f"{due_date_formatted}",
