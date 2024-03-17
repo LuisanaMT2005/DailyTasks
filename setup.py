@@ -7,7 +7,7 @@ install_requires = [
 
 setup(
     name="DailyTasks",
-    version="0.4.0",
+    version="1.0.0",
     description="A tasks manager for those who like work from shell.",
     author="LuisanaMT",
     author_email="luisanamartineztorres25@gmail.com",
