@@ -1,7 +1,6 @@
-env/
-Tasks.json
+venv/
 pruebas_click/
-datetime_with_click_try.json
+*.json
 __pycache__/
 datetime_to_date.py
 *.egg-info/

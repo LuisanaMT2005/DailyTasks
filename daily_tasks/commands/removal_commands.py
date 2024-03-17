@@ -1,13 +1,18 @@
 import json
+import click as ck
+from daily_tasks.commands import utilities
 
 
+@ck.command
 def delete_done_tasks():
-    """Delete all your done tasks"""
+    """Delete all your done tasks."""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
+    done_status = utilities.STATUS[2]
+
     for task in tasks:
-        if task['status'] == "Done":
+        if task['status'] == done_status:
             task_index = tasks.index(task)
             tasks.pop(task_index)
     
@@ -15,8 +20,12 @@ def delete_done_tasks():
         json.dump(tasks, writing_tasks_file, indent=2)
 
 
+@ck.command
+@ck.option('-id', '--task-id',
+           required=True,
+           type=ck.INT)
 def delete_task(task_id):
-    """Delete a task"""
+    """Delete a task."""
     with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
@@ -24,8 +33,8 @@ def delete_task(task_id):
         if task['id'] == task_id:
             task_index = tasks.index(task)
             tasks.pop(task_index)
-        else:
-            print("No task with the passed id")
+            ck.echo(ck.style('Task deleted successfully.',
+                             bold=True))
 
     with open('Tasks.json', 'w', encoding='utf-8') as writing_tasks_file:
         json.dump(tasks, writing_tasks_file, indent=2)
