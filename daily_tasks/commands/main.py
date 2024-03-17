@@ -1,6 +1,7 @@
 import click as ck
 from daily_tasks.commands.main_commands import create_tasks_file, add_task, view_tasks
 from daily_tasks.commands.modification_commands import modify_description, modify_priority, modify_due_date, modify_status
+from daily_tasks.commands.removal_commands import delete_done_tasks, delete_task
 
 
 @ck.group
@@ -15,3 +16,5 @@ daily_tasks.add_command(modify_description)
 daily_tasks.add_command(modify_priority)
 daily_tasks.add_command(modify_due_date)
 daily_tasks.add_command(modify_status)
+daily_tasks.add_command(delete_done_tasks)
+daily_tasks.add_command(delete_task)
