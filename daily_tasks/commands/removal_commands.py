@@ -33,8 +33,8 @@ def delete_task(task_id):
         if task['id'] == task_id:
             task_index = tasks.index(task)
             tasks.pop(task_index)
-        else:
-            print("No task with the passed id")
+            ck.echo(ck.style('Task deleted successfully.',
+                             bold=True))
 
     with open('Tasks.json', 'w', encoding='utf-8') as writing_tasks_file:
         json.dump(tasks, writing_tasks_file, indent=2)
