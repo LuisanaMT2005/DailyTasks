@@ -94,4 +94,4 @@ def view_tasks(file_name) -> None:
         due_date = task['due_date']
         status = task['status']
 
-        utilities.tasks_printing(task_id, description, priority, due_date, status)
+        utilities.stylized_tasks_printing(task_id, description, priority, due_date, status)

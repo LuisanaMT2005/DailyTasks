@@ -29,7 +29,7 @@ def check_if_a_json_file_exist() -> str:
 
     return tasks_file
 
-def tasks_printing(task_id, description, priority, due_date, status) -> None:
+def stylized_tasks_printing(task_id, description, priority, due_date, status) -> None:
     if priority == PRIORITIES[0]:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
