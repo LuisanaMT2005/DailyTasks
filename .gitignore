@@ -1,6 +1,11 @@
+# Development
 venv/
 pruebas_click/
 *.json
 __pycache__/
 datetime_to_date.py
+
+# Distribution
 *.egg-info/
+build/
+dist/
