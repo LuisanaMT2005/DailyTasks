@@ -1,6 +1,9 @@
 # DailyTasks #
 A tasks manager for those who like work from shell.
 
+![PyPI - Version](https://img.shields.io/pypi/v/dailytasks?style=for-the-badge&label=Lastest%20version&color=008B8B)
+![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/LuisanaMTDev/dailytasks?query=is%3Aopen&style=for-the-badge&label=Open%20issues&color=008B8B)
+
 ## Installation ##
 **Requirements:**
 - Python >= 3.11
