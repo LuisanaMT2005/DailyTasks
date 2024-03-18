@@ -7,7 +7,7 @@ A tasks manager for those who like work from shell.
 
 **How install it:**
 
-pip install dailytasks
+`pip install dailytasks`
 
 ## Contributing ##
 Read [Contributing file](https://github.com/LuisanaMT2005/DailyTasks/blob/main/CONTRIBUTING.md) and make whatever question in Discussions.
