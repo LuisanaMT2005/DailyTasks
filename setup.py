@@ -13,14 +13,14 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name="DailyTasks",
+    name="dailytasks",
     version="1.0.0",
     description="A tasks manager for those who like work from shell.",
     long_description=long_description,
     long_description_content_type='text/markdown',
     author="LuisanaMTDev",
     author_email="luisanamartineztorres25@gmail.com",
-    url='https://github.com/LuisanaMTDev/DailyTasks',
+    url='https://github.com/LuisanaMTDev/dailytasks',
     license="Apache-2.0",
     classifiers=[
         'Environment :: Console',
