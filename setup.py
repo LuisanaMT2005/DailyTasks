@@ -6,7 +6,7 @@ install_requires = [
 ]
 
 extras_require = {
-    'dev': ['pylint>=3.1.0', 'click>=8.1.7'],
+    'dev': ['pylint>=3.1.0', 'click>=8.1.7', 'twine>=5.0.0'],
 }
 
 with open('README.md', 'r', encoding='utf-8') as readme_file:
