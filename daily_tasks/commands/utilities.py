@@ -1,12 +1,13 @@
 """Utilities"""
 from datetime import datetime
-from os import listdir
+from json import dump
 import click as ck
 
 
 DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
+TASKS_FILE_NAME = 'tasks.json'
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
@@ -16,18 +17,6 @@ def get_due_date_default_value() -> str:
     today_date_str_formatted = str(today_date_obj_formatted)
 
     return today_date_str_formatted
-
-def check_if_a_json_file_exist() -> str:
-    files = listdir('.')
-
-    for file in files:
-        if file.endswith('.json'):
-            tasks_file = file
-            break
-        tasks_file = None
-        continue
-
-    return tasks_file
 
 def stylized_tasks_printing(task_id, description, priority, due_date, status) -> None:
     if priority == PRIORITIES[0]:
@@ -105,3 +94,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
                 ck.style(text=status, fg='green'),
                 ck.style(text=due_date, bold=True)
             ))
+
+def create_tasks_file(file_name) -> None:
+    with open(file_name, 'w', encoding='utf-8') as tasks_file:
+        dump([], tasks_file)

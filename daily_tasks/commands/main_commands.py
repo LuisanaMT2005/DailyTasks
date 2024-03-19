@@ -1,21 +1,10 @@
 """Main commands of this CLI"""
 import json
+from os.path import exists
 
 import click as ck
 from daily_tasks.commands import utilities
 
-
-@ck.command
-@ck.option('-f', '--file_name',
-           required=False,
-           type=ck.STRING,
-           default='tasks.json',
-           help="Name your task file, it's need to end with .json file extension."
-           )
-def create_tasks_file(file_name) -> None:
-    """Create the tasks file (it will be empty)."""
-    with open(file_name, 'w', encoding='utf-8') as tasks_file:
-        json.dump([], tasks_file)
 
 @ck.command
 @ck.option('-d', '--description',
@@ -39,16 +28,22 @@ def create_tasks_file(file_name) -> None:
            default=utilities.STATUS[3]
            )
 @ck.option('-f', '--file_name',
+           hidden=True,
            required=False,
            type=ck.STRING,
-           default=utilities.check_if_a_json_file_exist(),
+           default=utilities.TASKS_FILE_NAME,
            help="Name your task file, take into account that if the file doesn't exist, this command won't create the task."
            )
-def add_task(description, priority, due_date, status, file_name) -> None:
+def add_task(description, priority, due_date, status, file_name=utilities.TASKS_FILE_NAME) -> None: # pylint: disable=unused-argument
     """Create a new task."""
-
-    with open(file_name, 'r', encoding='utf-8') as tasks_file_read:
-        tasks = json.load(tasks_file_read)
+    
+    if exists(path=utilities.TASKS_FILE_NAME) is True:
+        with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
+            tasks = json.load(tasks_file_read)
+    else:
+        utilities.create_tasks_file(utilities.TASKS_FILE_NAME)
+        with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
+            tasks = json.load(tasks_file_read)
 
     if tasks == []:
         new_id = 1
@@ -73,20 +68,21 @@ def add_task(description, priority, due_date, status, file_name) -> None:
         }
     )
 
-    with open(file_name, 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_NAME, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
 @ck.command
 @ck.option('-f', '--file_name',
+           hidden=True,
            required=False,
            type=ck.STRING,
-           default=utilities.check_if_a_json_file_exist(),
+           default=utilities.TASKS_FILE_NAME,
            help="Name your task file, take into account that if the file doesn't exist, this command won't show your tasks."
            )
-def view_tasks(file_name) -> None:
+def view_tasks(file_name=utilities.TASKS_FILE_NAME) -> None: # pylint: disable=unused-argument
     """View all your tasks."""
-    with open(file_name, 'r', encoding='utf-8') as tasks_file:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:
