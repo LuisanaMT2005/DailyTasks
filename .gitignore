@@ -9,3 +9,4 @@ datetime_to_date.py
 *.egg-info/
 build/
 dist/
+*.pypirc
