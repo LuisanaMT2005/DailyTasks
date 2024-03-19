@@ -22,7 +22,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
     if priority == PRIORITIES[0]:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='red', bold=True),
                 ck.style(text=status, fg='red'),
@@ -30,7 +30,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         elif status == STATUS[1]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='red', bold=True),
                 ck.style(text=status, fg='yellow'),
@@ -38,7 +38,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         else:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='red', bold=True),
                 ck.style(text=status, fg='green'),
@@ -47,7 +47,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
     elif priority == PRIORITIES[1]:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='yellow', bold=True),
                 ck.style(text=status, fg='red'),
@@ -55,7 +55,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         elif status == STATUS[1]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='yellow', bold=True),
                 ck.style(text=status, fg='yellow'),
@@ -63,7 +63,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         else:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='yellow', bold=True),
                 ck.style(text=status, fg='green'),
@@ -72,7 +72,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
     else:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='white', bold=True),
                 ck.style(text=status, fg='red'),
@@ -80,7 +80,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         elif status == STATUS[1]:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='white', bold=True),
                 ck.style(text=status, fg='yellow'),
@@ -88,7 +88,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
             ))
         else:
             ck.echo('{}. {} - {} - {} - {}'.format(
-                ck.style(text=task_id, fg='black'),
+                ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='white', bold=True),
                 ck.style(text=status, fg='green'),
