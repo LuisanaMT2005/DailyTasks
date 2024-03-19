@@ -14,7 +14,7 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setup(
     name="dailytasks",
-    version="1.1.0",
+    version="1.1.3",
     description="A tasks manager for those who like work from shell.",
     long_description=long_description,
     long_description_content_type='text/markdown',

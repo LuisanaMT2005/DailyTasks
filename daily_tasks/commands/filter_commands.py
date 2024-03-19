@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime # pylint: disable=unused-import
 import json
 import click as ck
 from daily_tasks.commands import utilities
@@ -11,7 +11,7 @@ from daily_tasks.commands import utilities
            )
 def filter_tasks_by_priority(priority):
     """Filter your tasks by priority."""
-    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
     priority_upper = priority.upper()
@@ -35,7 +35,7 @@ def filter_tasks_by_priority(priority):
            )
 def filter_tasks_by_due_date(due_date):
     """Filter your tasks by due date."""
-    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
     due_date_date_object = due_date.date()
@@ -59,7 +59,7 @@ def filter_tasks_by_due_date(due_date):
            type=ck.Choice(utilities.STATUS, case_sensitive=False))
 def filter_tasks_by_status(status):
     """Filter your tasks by status."""
-    with open('Tasks.json', 'r', encoding='utf-8') as reading_tasks_file:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
     status_capitalize = status.capitalize()

@@ -15,7 +15,7 @@ import click as ck
            )
 def modify_description(task_id, new_description) -> None:
     """Modify description of a task."""
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     for task in tasks:
@@ -30,7 +30,7 @@ def modify_description(task_id, new_description) -> None:
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
 
-    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_NAME, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
@@ -45,7 +45,7 @@ def modify_description(task_id, new_description) -> None:
            )
 def modify_priority(task_id, new_priority):
     """Modify priority of a task."""
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     for task in tasks:
@@ -61,7 +61,7 @@ def modify_priority(task_id, new_priority):
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
 
-    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_NAME, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
@@ -76,7 +76,7 @@ def modify_priority(task_id, new_priority):
            )
 def modify_due_date(task_id, new_due_date):
     """Modify due date of a task."""
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     for task in tasks:
@@ -94,7 +94,7 @@ def modify_due_date(task_id, new_due_date):
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
 
-    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_NAME, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
@@ -109,7 +109,7 @@ def modify_due_date(task_id, new_due_date):
            )
 def modify_status(task_id, new_status):
     """Modify status of a task."""
-    with open('Tasks.json', 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_NAME, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     for task in tasks:
@@ -125,6 +125,5 @@ def modify_status(task_id, new_status):
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
 
-    with open('Tasks.json', 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_NAME, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
-

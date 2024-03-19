@@ -2,7 +2,7 @@ from click.testing import CliRunner
 
 from daily_tasks.commands.main_commands import view_tasks, add_task, create_tasks_file
 
-
+# Delete this test
 def test_create_tasks_file():
     runner = CliRunner()
     test_task_data_file = 'Tasks_test.json'
@@ -16,7 +16,7 @@ def test_add_task():
     priority = "H"
     due_date = "2024/03/15"
     status = "To-do"
-    test_task_data_file = "Tasks_test.json"
+    test_task_data_file = "Tasks_test.json" # Change to TASKS_FILE_NAME constant.
 
     result = runner.invoke(add_task, [
         '--description', description,
@@ -30,7 +30,7 @@ def test_add_task():
 
 def test_view_tasks():
     runner = CliRunner()
-    test_task_data_file = 'Tasks_test.json'
+    test_task_data_file = 'Tasks_test.json' # Change to TASKS_FILE_NAME constant.
     result = runner.invoke(view_tasks, ['--file_name', test_task_data_file])
 
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
