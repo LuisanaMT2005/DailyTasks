@@ -14,7 +14,7 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setup(
     name="dailytasks",
-    version="1.1.4",
+    version="1.2.2",
     description="A tasks manager for those who like work from shell.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -33,6 +33,7 @@ setup(
     extras_require=extras_require,
     packages=find_packages(),
     include_package_data=True,
+    package_data={'data_files': ['*.json']},
     python_requires=">=3.11",
     entry_points={
         'console_scripts': [
