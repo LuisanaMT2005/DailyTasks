@@ -11,3 +11,4 @@ set-a-dir-to-data-files.md
 build/
 dist/
 *.pypirc
+!tasks.json
