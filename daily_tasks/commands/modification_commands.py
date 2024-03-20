@@ -31,7 +31,7 @@ from daily_tasks.commands import utilities
     required=False
 )
 def modify(task_id, new_description, new_priority, new_status, new_due_date):
-
+    "Modify a task info."
     with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
