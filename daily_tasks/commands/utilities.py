@@ -1,6 +1,6 @@
 """Utilities"""
 from datetime import datetime
-from json import dump
+from os.path import join, dirname, abspath
 import click as ck
 
 
@@ -8,6 +8,8 @@ DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
 TASKS_FILE_NAME = 'tasks.json'
+data_files_path = join(dirname(dirname(abspath(__file__))), 'data_files')
+tasks_file_path = join(data_files_path, TASKS_FILE_NAME)
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
@@ -95,6 +97,3 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
                 ck.style(text=due_date, bold=True)
             ))
 
-def create_tasks_file(file_name) -> None:
-    with open(file_name, 'w', encoding='utf-8') as tasks_file:
-        dump([], tasks_file)
