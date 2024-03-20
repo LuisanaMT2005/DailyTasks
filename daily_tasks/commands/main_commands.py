@@ -26,14 +26,14 @@ from daily_tasks.commands import utilities
            help="Choose a status to your task.",
            default=utilities.STATUS[3]
            )
-@ck.option('-f', '--file_name',
+@ck.option('-f', '--file-path',
            hidden=True,
            required=False,
            type=ck.STRING,
            default=utilities.tasks_file_path,
-           help="Name your task file, take into account that if the file doesn't exist, this command won't create the task."
+           help="This option is ONLY FOR TESTING."
            )
-def add_task(description, priority, due_date, status, file_name=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
+def add(description, priority, due_date, status, file_path=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
     """Create a new task."""
     
     with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
@@ -67,14 +67,14 @@ def add_task(description, priority, due_date, status, file_name=utilities.tasks_
 
 
 @ck.command
-@ck.option('-f', '--file_name',
+@ck.option('-f', '--file-path',
            hidden=True,
            required=False,
            type=ck.STRING,
            default=utilities.tasks_file_path,
-           help="Name your task file, take into account that if the file doesn't exist, this command won't show your tasks."
+           help="This option is ONLY FOR TESTING."
            )
-def view_tasks(file_name=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
+def view(file_path=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
     """View all your tasks."""
     with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
