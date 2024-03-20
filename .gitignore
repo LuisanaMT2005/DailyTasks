@@ -4,11 +4,9 @@ pruebas_click/
 *.json
 __pycache__/
 datetime_to_date.py
-set-a-dir-to-data-files.md
 
 # Distribution
 *.egg-info/
 build/
 dist/
 *.pypirc
-!tasks.json
