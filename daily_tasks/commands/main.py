@@ -2,7 +2,7 @@ import click as ck
 from daily_tasks.commands.main_commands import add, view
 from daily_tasks.commands.modification_commands import modify
 from daily_tasks.commands.removal_commands import delete_done_tasks, delete_task
-from daily_tasks.commands.filter_commands import filter_tasks_by_priority, filter_tasks_by_due_date, filter_tasks_by_status
+from daily_tasks.commands.filter_commands import filter_tasks
 
 
 @ck.group
@@ -15,6 +15,4 @@ daily_tasks.add_command(view)
 daily_tasks.add_command(modify)
 daily_tasks.add_command(delete_done_tasks)
 daily_tasks.add_command(delete_task)
-daily_tasks.add_command(filter_tasks_by_priority)
-daily_tasks.add_command(filter_tasks_by_due_date)
-daily_tasks.add_command(filter_tasks_by_status)
+daily_tasks.add_command(filter_tasks, name='filter')
