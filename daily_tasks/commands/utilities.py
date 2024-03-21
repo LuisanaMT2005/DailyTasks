@@ -8,6 +8,7 @@ DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
 TASKS_FILE_NAME = 'tasks.json'
+EXPORTED_TASKS_FILE = 'exported_tasks.json'
 data_files_path = join(dirname(dirname(abspath(__file__))), 'data_files')
 tasks_file_path = join(data_files_path, TASKS_FILE_NAME)
 
@@ -96,4 +97,3 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
                 ck.style(text=status, fg='green'),
                 ck.style(text=due_date, bold=True)
             ))
-
