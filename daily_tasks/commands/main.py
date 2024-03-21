@@ -6,6 +6,10 @@ from daily_tasks.commands.filter_commands import filter_tasks
 
 
 @ck.group
+@ck.version_option(
+    package_name='dailytasks',
+    prog_name='dailytasks',
+)
 def daily_tasks() -> None:
     """A tasks manager for those who like work from shell."""
 
