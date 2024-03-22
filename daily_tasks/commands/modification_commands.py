@@ -32,7 +32,7 @@ from daily_tasks.commands import utilities
 )
 def modify(task_id, new_description, new_priority, new_status, new_due_date):
     """Modify a task info."""
-    with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     for task in tasks:
@@ -62,5 +62,5 @@ def modify(task_id, new_description, new_priority, new_status, new_due_date):
     tasks.pop(task_index)
     tasks.insert(task_index, extracted_task)
 
-    with open(utilities.tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)

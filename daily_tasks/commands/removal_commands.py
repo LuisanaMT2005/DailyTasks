@@ -16,7 +16,7 @@ from daily_tasks.commands import utilities
 )
 def delete(task_id, done):
     """Delete tasks."""
-    with open(utilities.tasks_file_path, 'r', encoding='utf-8') as reading_tasks_file:
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
     if task_id:
@@ -33,5 +33,5 @@ def delete(task_id, done):
                 task_index = tasks.index(task)
                 tasks.pop(task_index)
 
-    with open(utilities.tasks_file_path, 'w', encoding='utf-8') as writing_tasks_file:
+    with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as writing_tasks_file:
         json.dump(tasks, writing_tasks_file, indent=2)

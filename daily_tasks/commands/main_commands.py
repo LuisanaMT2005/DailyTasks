@@ -30,13 +30,13 @@ from daily_tasks.commands import utilities
            hidden=True,
            required=False,
            type=ck.STRING,
-           default=utilities.tasks_file_path,
+           default=utilities.TASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING."
            )
-def add(description, priority, due_date, status, file_path=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
+def add(description, priority, due_date, status, file_path=utilities.TASKS_FILE_PATH) -> None: # pylint: disable=unused-argument
     """Create a new task."""
     
-    with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
 
     if tasks == []:
@@ -62,7 +62,7 @@ def add(description, priority, due_date, status, file_path=utilities.tasks_file_
         }
     )
 
-    with open(utilities.tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
+    with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file_write:
         json.dump(tasks, tasks_file_write, indent=2)
 
 
@@ -71,12 +71,12 @@ def add(description, priority, due_date, status, file_path=utilities.tasks_file_
            hidden=True,
            required=False,
            type=ck.STRING,
-           default=utilities.tasks_file_path,
+           default=utilities.TASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING."
            )
-def view(file_path=utilities.tasks_file_path) -> None: # pylint: disable=unused-argument
+def view(file_path=utilities.TASKS_FILE_PATH) -> None: # pylint: disable=unused-argument
     """View all your tasks."""
-    with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file:
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:

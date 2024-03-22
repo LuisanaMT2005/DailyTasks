@@ -13,7 +13,7 @@ from daily_tasks.commands import utilities
 def export_tasks(export_path):
     """Export your tasks."""
 
-    with open(utilities.tasks_file_path, 'r', encoding='utf-8') as tasks_file:
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     with open(join(export_path, utilities.EXPORTED_TASKS_FILE), 'w', encoding='utf-8') as exported_tasks_file:
@@ -32,5 +32,5 @@ def import_tasks(import_path):
     with open(join(import_path, utilities.EXPORTED_TASKS_FILE), 'r', encoding='utf-8') as imported_tasks_file:
         tasks = json.load(imported_tasks_file)
 
-    with open(utilities.tasks_file_path, 'w', encoding='utf-8') as tasks_file:
+    with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file:
         json.dump(tasks, tasks_file, indent=2)

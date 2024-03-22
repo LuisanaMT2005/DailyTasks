@@ -9,8 +9,8 @@ PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
 TASKS_FILE_NAME = 'tasks.json'
 EXPORTED_TASKS_FILE = 'exported_tasks.json'
-data_files_path = join(dirname(dirname(abspath(__file__))), 'data_files')
-tasks_file_path = join(data_files_path, TASKS_FILE_NAME)
+DATA_FILES_PATH = join(dirname(dirname(abspath(__file__))), 'data_files')
+TASKS_FILE_PATH = join(DATA_FILES_PATH, TASKS_FILE_NAME)
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
