@@ -21,7 +21,7 @@ from daily_tasks.commands import utilities
     required=False
 )
 def filter_tasks(priority, status, due_date):
-    "Filter tasks, use only one option for better results."
+    """Filter tasks, use only one option for better results."""
     with open(utilities.tasks_file_path, 'r', encoding='utf-8') as reading_tasks_file:
         tasks = json.load(reading_tasks_file)
 
