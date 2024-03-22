@@ -12,6 +12,11 @@ A tasks manager for those who like work from shell.
 
 `pip install dailytasks`
 
+## Update process ##
+1. Before update this package execute `dailytasks export` command to save all your tasks.
+
+2. after update execute `dailytasks import` command to have all your tasks back.
+
 ## Contributing ##
 Read [Contributing file](https://github.com/LuisanaMT2005/DailyTasks/blob/main/CONTRIBUTING.md) and make whatever question in Discussions.
 
