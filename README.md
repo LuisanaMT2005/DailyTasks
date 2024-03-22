@@ -13,12 +13,20 @@ A tasks manager for those who like work from shell.
 `pip install dailytasks`
 
 ## Update process ##
-1. Before update this package execute `dailytasks export` command to save all your tasks.
+1. Before update this package execute `dailytasks export` command to save all your data.
 
-2. after update execute `dailytasks import` command to have all your tasks back.
+    1.1. Provide a path to the command (with `-p` option) is required for it execution, this path is where your data will be saved.
+
+    1.2. This command will create a json file named 'exported_tasks' in the path provided path.
+
+2. After update execute `dailytasks import` command to restore all your data.
+
+    2.1. Provide the path provided before (with `-p` option) and all your data will be restore.
+
+**This is because when you update the CLI, data folder ([data_files](./daily_tasks/data_files/)) is overwritten and all your data deleted.**
 
 ## Contributing ##
-Read [Contributing file](https://github.com/LuisanaMT2005/DailyTasks/blob/main/CONTRIBUTING.md) and make whatever question in Discussions.
+Read [Contributing file](https://github.com/LuisanaMT2005/dailytasks/blob/main/CONTRIBUTING.md) and make whatever question in Discussions.
 
 ### Thanks to: ###
 [Krishnag09](https://github.com/Krishnag09) for contributing closing [#2](https://github.com/LuisanaMTDev/dailytasks/issues/2) and [#8](https://github.com/LuisanaMTDev/dailytasks/issues/8) issues.
