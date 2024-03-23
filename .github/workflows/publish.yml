@@ -1,22 +1,22 @@
 name: Build and publish dailytasks package.
 
 on:
-    push:
-        branches: 
-            - fix-delete-cmd
+  push:
+    branches: 
+      fix-delete-cmd
 
 jobs:
-    build-and-publish:
-        runs-on: ubuntu-22.04
-        steps:
-            - name: Delete previous distribution files and folders.
-              run: echo "step 1."
+  build-and-publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Delete previous distribution files and folders.
+        run: echo "step 1."
 
-            - name: Build and check new distribution files.
-              run: echo "step 2."
+      - name: Build and check new distribution files.
+        run: echo "step 2."
 
-            - name: Upload new package version.
-              run: echo "step 3."
-            
-            - name: listing folders.
-              run: ls -l
+      - name: Upload new package version.
+        run: echo "step 3."
+      
+      - name: listing folders.
+        run: ls -l
