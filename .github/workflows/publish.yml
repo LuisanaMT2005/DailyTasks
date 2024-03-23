@@ -18,10 +18,17 @@ permissions:
 jobs:
   deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: List maquine content
+      run: ls -l
+
+    - name: Delete dist and build folders
+      run: rm -r dist/ build/
 
     - name: Set up Python
       uses: actions/setup-python@v5
