@@ -16,16 +16,6 @@ permissions:
   contents: read
 
 jobs:
-  view-maquine-status:
-    runs-on: ubuntu-22.04
-
-    steps:
-    - name: List maquine content
-      run: ls -l
-
-    - name: Delete dist and build folders
-      run: rm -r dist/ build/
-      
   deploy:
 
     runs-on: ubuntu-22.04
