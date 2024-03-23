@@ -3,7 +3,7 @@ name: Build and publish dailytasks package.
 on:
   push:
     branches: 
-      fix-delete-cmd
+      - fix-delete-cmd
 
 jobs:
   build-and-publish:
