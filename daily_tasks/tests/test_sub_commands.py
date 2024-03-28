@@ -38,16 +38,3 @@ def test_subtask_info(tmp_path):
         ])
 
     assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
-
-def test_subtask_info(tmp_path):
-    runner = CliRunner()
-    test_file_path = os.path.join(tmp_path, "example.txt")
-    with open(test_file_path, 'w') as test_file:
-        test_file.write("Test content")
-
-    with runner.isolated_filesystem(temp_dir=tmp_path):
-        result = runner.invoke(import_tasks, args=[
-            '--export_path', test_file_path  # Pass the file path here
-        ])
-
-    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
