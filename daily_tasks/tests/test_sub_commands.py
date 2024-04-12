@@ -1,6 +1,6 @@
+import os
 from click.testing import CliRunner
 import pytest
-import os
 from daily_tasks.commands import filter_tasks
 from daily_tasks.commands import import_tasks
 from daily_tasks.commands import export_tasks
@@ -28,13 +28,11 @@ def tmp_path(tmpdir):
 
 def test_subtask_info(tmp_path):
     runner = CliRunner()
-    test_file_path = os.path.join(tmp_path, "example.txt")
-    with open(test_file_path, 'w') as test_file:
-        test_file.write("Test content")
+    test_file_path = os.path.abspath(os.getcwd())
 
     with runner.isolated_filesystem(temp_dir=tmp_path):
         result = runner.invoke(export_tasks, args=[
-            '--export_path', test_file_path  # Pass the file path here
+            '--export-path', test_file_path  # Pass the file path here
         ])
 
     assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
