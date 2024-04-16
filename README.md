@@ -24,14 +24,18 @@ A tasks manager for those who like work from shell.
     2.1. Provide the path provided before (with `-p` option) and all your data will be restore.
 
    **This is because when you update the CLI, data folder ([data_files](./daily_tasks/data_files/)) is overwritten and all your data deleted.**
-
-3.  Running tests locally
-
-    3.1 cd into daily_tasks
-
-    3.2 use `pytest test` to run all tests, use `pytest test/test_file_name` to run individual tests.
    
-    3.3 if you get errors around missing daily_task module, reinstall package using `pip install dailytasks`
+## Testing ##
+
+Running tests locally:
+
+1. Clone this repository.
+
+1. cd into your clone.
+
+2. Use `pytest test` to run all tests, use `pytest test/test_file_name` to run individual tests.
+   
+3. If you get errors around missing daily_task module, reinstall package using `pip install dailytasks`.
 
 ## Contributing ##
 Read [Contributing file](https://github.com/LuisanaMT2005/dailytasks/blob/main/CONTRIBUTING.md) and make whatever question in Discussions.
