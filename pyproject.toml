@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dailytasks"
-version = "2.1.2"
+version = "2.1.3"
 authors = [{name = "LuisanaMTDev", email = "luisanamartineztorres25@gmail.com"}]
 description = "A tasks manager for those who like work from shell."
 readme = "README.md"
@@ -22,8 +22,8 @@ dependencies = [
     "colorama>=0.4.6"
 ]
 
-[project.entry-points]
-dailytasks = { "dailytasks" = "daily_tasks.commands.main:daily_tasks" }
+[project.scripts]
+dailytasks = "daily_tasks.commands.main:daily_tasks"
 
 [tool.setuptools]
 packages = ["daily_tasks"]
