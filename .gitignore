@@ -3,6 +3,7 @@ venv/
 pruebas_click/
 *.json
 __pycache__/
+.pytest_cache/
 datetime_to_date.py
 
 # Distribution
@@ -10,3 +11,4 @@ datetime_to_date.py
 build/
 dist/
 *.pypirc
+.idea
