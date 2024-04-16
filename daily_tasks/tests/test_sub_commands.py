@@ -2,8 +2,7 @@ import os
 from click.testing import CliRunner
 import pytest
 from daily_tasks.commands import filter_tasks
-from daily_tasks.commands import import_tasks
-from daily_tasks.commands import export_tasks
+from daily_tasks.commands import export_tasks, modify, delete
 
 
 def test_subtask_filtering():
@@ -35,4 +34,26 @@ def test_subtask_info(tmp_path):
             '--export-path', test_file_path  # Pass the file path here
         ])
 
+    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
+
+
+def test_subtask_modify():
+    runner = CliRunner()
+    task_id = 2
+    new_description = "Complete unit test sub commands modified"
+
+    test_file_path = os.path.abspath(os.getcwd())
+    result = runner.invoke(modify, [
+        '--task-id', task_id,
+        '--new-description', new_description,
+    ])
+    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
+
+
+def test_subtask_delete():
+    runner = CliRunner()
+    task_id = 2
+    result = runner.invoke(delete, [
+        '--task-id', task_id,
+    ])
     assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
