@@ -1,4 +1,4 @@
-name: Build and publish package.
+name: Test, build and publish package.
 
 on:
   release:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  prepare-machine:
     runs-on: ubuntu-22.04
 
     steps:
@@ -20,11 +20,27 @@ jobs:
       with:
         python-version: '3.11'
     
+  install-dependencies:
+    runs-on: ubuntu-22.04
+
+    steps:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build pytest
+        pip install -r requirement.txt
 
+  testing:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Run tests
+      run: python -m pytest ./daily_tasks/tests/
+
+  build-and-publish-package:
+    runs-on: ubuntu-22.04
+
+    steps:
     - name: Build package
       run: python -m build --sdist --wheel
 
@@ -32,4 +48,5 @@ jobs:
       uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450
       with:
         user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        repository-url: https://test.pypi.org/legacy/
