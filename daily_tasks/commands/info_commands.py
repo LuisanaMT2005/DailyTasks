@@ -29,8 +29,14 @@ def export_tasks(export_path):
 def import_tasks(import_path):
     """Import your tasks."""
 
+    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
+        existing_tasks = json.load(tasks_file)
+
     with open(join(import_path, utilities.EXPORTED_TASKS_FILE), 'r', encoding='utf-8') as imported_tasks_file:
         tasks = json.load(imported_tasks_file)
 
+    for task in tasks:
+        existing_tasks.append(task)
+        
     with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file:
-        json.dump(tasks, tasks_file, indent=2)
+        json.dump(existing_tasks, tasks_file, indent=2)
