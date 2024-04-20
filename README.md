@@ -4,6 +4,8 @@ A tasks manager for those who like work from shell.
 ![PyPI - Version](https://img.shields.io/pypi/v/dailytasks?style=for-the-badge&label=Lastest%20version&color=008B8B&link=https%3A%2F%2Fpypi.org%2Fproject%2Fdailytasks%2F)
 ![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/LuisanaMTDev/dailytasks?query=is%3Aopen&style=for-the-badge&label=Open%20issues&color=008B8B&link=https%3A%2F%2Fgithub.com%2FLuisanaMTDev%2Fdailytasks%2Fissues%3Fq%3Dis%253Aissue%2Bis%253Aopen)
 
+
+
 ## Installation ##
 **Requirements:**
 - Python >= 3.11
@@ -25,6 +27,20 @@ A tasks manager for those who like work from shell.
 
    **This is because when you update the CLI, data folder ([data_files](./daily_tasks/data_files/)) is overwritten and all your data deleted.**
    
+## How to add tasks from a json file ##
+Execute `dailytasks import --help` to get information about import cmd options.
+
+import options:
+- Normal:
+    `dailytasks import -p C:\where\you\export\tasks\are`
+- Personalized (A better name is welcome):
+    `dailytasks import -a -f your_json_file_name -d key_that_contains_the_descriptions -p C:\where\you\json\file\is`
+
+    - `-a`: Activate this option.
+    - `-f`: To pass name of your json file.
+    - `-d`: The text you want as description should be in a object, in a key-value pair, to this option you will pass key of that key-value pair.
+    - `-p`: To pass path where you json file is.
+
 ## Testing ##
 
 Running tests locally:
