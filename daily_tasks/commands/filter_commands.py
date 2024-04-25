@@ -68,3 +68,6 @@ def filter_tasks(priority, status, due_date):
                 task_status = task['status']
 
                 utilities.stylized_tasks_printing(task_id, task_description, task_priority, task_due_date, task_status)
+    else:
+        ck.echo("No option passed.")
+        
