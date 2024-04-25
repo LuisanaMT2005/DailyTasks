@@ -1,5 +1,5 @@
 """Utilities"""
-from datetime import datetime
+from datetime import datetime, date
 from os.path import join, dirname, abspath
 import click as ck
 
@@ -8,9 +8,11 @@ DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
 TASKS_FILE_NAME = 'tasks.json'
+SUBTASKS_FILE_NAME = 'sub_tasks.json'
 EXPORTED_TASKS_FILE = 'exported_tasks.json'
 DATA_FILES_PATH = join(dirname(dirname(abspath(__file__))), 'data_files')
 TASKS_FILE_PATH = join(DATA_FILES_PATH, TASKS_FILE_NAME)
+SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, SUBTASKS_FILE_NAME)
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
@@ -97,3 +99,12 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
                 ck.style(text=status, fg='green'),
                 ck.style(text=due_date, bold=True)
             ))
+
+def format_priority_status_and_due_date(priority, status, due_date) -> tuple:
+    priority_upper: str = priority.upper()
+    status_capitalize: str = status.capitalize()
+
+    due_date_date_obj: date = due_date.date()
+    due_date_formatted: str = due_date_date_obj.strftime(DUE_DATE_FORMAT[0])
+
+    return (priority_upper, status_capitalize, due_date_formatted)
