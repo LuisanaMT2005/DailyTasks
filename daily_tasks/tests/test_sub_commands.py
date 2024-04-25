@@ -39,7 +39,7 @@ def test_subtask_info(tmp_path):
 
 def test_subtask_modify():
     runner = CliRunner()
-    task_id = 2
+    task_id = 1
     new_description = "Complete unit test sub commands modified"
 
     test_file_path = os.path.abspath(os.getcwd())
