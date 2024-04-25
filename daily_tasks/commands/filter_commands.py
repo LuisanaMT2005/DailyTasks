@@ -39,8 +39,7 @@ def filter_tasks(priority, status, due_date):
                 task_status = task['status']
 
                 utilities.stylized_tasks_printing(task_id, task_description, task_priority, task_due_date, task_status)
-
-    if status:
+    elif status:
 
         status_capitalize = status.capitalize()
 
@@ -54,8 +53,7 @@ def filter_tasks(priority, status, due_date):
                 task_status = task['status']
 
                 utilities.stylized_tasks_printing(task_id, task_description, task_priority, task_due_date, task_status)
-
-    if due_date:
+    elif due_date:
         
         due_date_date_object = due_date.date()
         due_date_formatted = due_date_date_object.strftime(utilities.DUE_DATE_FORMAT[0])
