@@ -24,6 +24,28 @@ def test_add_task():
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
 
 
+def test_add_subtask():
+    runner = CliRunner()
+
+    description = "Complete unit test"
+    priority = "H"
+    due_date = "2024/03/15"
+    status = "To-do"
+    test_task_data_file = TASKS_FILE_NAME
+
+    result = runner.invoke(add , [
+        '--sub-task',
+        '--task-id', 1,
+        '--description', description,
+        '--priority', priority,
+        '--due-date', due_date,
+        '--status', status,
+        '--file-path', test_task_data_file,
+    ])
+
+    assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"
+
+
 def test_view_tasks():
     runner = CliRunner()
     test_task_data_file = TASKS_FILE_NAME
