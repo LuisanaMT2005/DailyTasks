@@ -11,7 +11,7 @@ STATUS = ['To-do', 'In-progress', 'Done', ' ']
 # Productions paths
 DATA_FILES_PATH = join(environ.get('APPDATA'), 'dailytasks')
 TASKS_FILE_PATH = join(DATA_FILES_PATH, 'tasks.json')
-SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, 'sub_tasks.json')
+SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, 'subtasks.json')
 EXPORTED_TASKS_FILE = 'exported_tasks.json'
 
 # Test paths
