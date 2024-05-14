@@ -4,18 +4,14 @@ from daily_tasks.commands import utilities
 
 
 @ck.command
-@ck.option(
-    '-id', '--task-id',
-    type=ck.INT,
-    required=False,
-    help='Id of the task you want to delete.'
-)
-@ck.option(
-    '--done',
-    is_flag=True,
-    required=False,
-    help='Will delete all done tasks.'
-)
+@ck.option('-id', '--task-id',
+           type=ck.INT,
+           required=False,
+           help='Id of the task you want to delete.')
+@ck.option('--done',
+           is_flag=True,
+           required=False,
+           help='Will delete all done tasks.')
 def delete(task_id, done):
     """Delete tasks."""
     with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as reading_tasks_file:
@@ -29,7 +25,7 @@ def delete(task_id, done):
 
     amount_of_tasks = len(tasks)
 
-    for i in range(amount_of_tasks): # pylint: disable=unused-variable
+    for i in range(amount_of_tasks):
         if done:
             for task in tasks:
                 done_status = utilities.STATUS[2]

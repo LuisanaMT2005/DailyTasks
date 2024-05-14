@@ -1,4 +1,3 @@
-"""Utilities"""
 from datetime import datetime, date
 from os.path import join, dirname, abspath
 from os import environ
@@ -8,6 +7,7 @@ import click as ck
 DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
+
 # Productions paths
 DATA_FILES_PATH = join(environ.get('APPDATA'), 'dailytasks')
 TASKS_FILE_PATH = join(DATA_FILES_PATH, 'tasks.json')
@@ -15,9 +15,11 @@ SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, 'subtasks.json')
 EXPORTED_TASKS_FILE = 'exported_tasks.json'
 
 # Test paths
-DATA_FILES_PATH_FOR_TESTS = join(dirname(dirname(abspath(__file__))), 'data_files')
+DATA_FILES_PATH_FOR_TESTS = join(dirname(dirname(abspath(__file__))),
+                                 'data_files')
 TASKS_FILE_PATH_FOR_TESTS = join(DATA_FILES_PATH_FOR_TESTS, 'tasks.json')
 SUBTASKS_FILE_PATH_FOR_TESTS = join(DATA_FILES_PATH_FOR_TESTS, 'subtasks.json')
+
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
@@ -28,7 +30,10 @@ def get_due_date_default_value() -> str:
 
     return today_date_str_formatted
 
-def stylized_tasks_printing(task_id, description, priority, due_date, status) -> None:
+
+def stylized_tasks_printing(task_id, description,
+                            priority, due_date,
+                            status) -> None:
     if priority == PRIORITIES[0]:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
@@ -104,6 +109,7 @@ def stylized_tasks_printing(task_id, description, priority, due_date, status) ->
                 ck.style(text=status, fg='green'),
                 ck.style(text=due_date, bold=True)
             ))
+
 
 def format_priority_status_and_due_date(priority, status, due_date) -> tuple:
     priority_upper: str = priority.upper()

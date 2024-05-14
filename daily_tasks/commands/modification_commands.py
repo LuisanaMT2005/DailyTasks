@@ -1,36 +1,28 @@
-from datetime import datetime # pylint: disable=unused-import
+from datetime import datetime
 import json
 import click as ck
 from daily_tasks.commands import utilities
 
 
 @ck.command
-@ck.option(
-    '-id', '--task-id',
-    type=ck.INT,
-    required=True
-)
-@ck.option(
-    '-d', '--new-description',
-    type=ck.STRING,
-    required=False
-)
-@ck.option(
-    '-p', '--new-priority',
-    type=ck.Choice(utilities.PRIORITIES, case_sensitive=False),
-    required=False
-)
-@ck.option(
-    '-s', '--new-status',
-    type=ck.Choice(utilities.STATUS, case_sensitive=False),
-    required=False
-)
-@ck.option(
-    '-dd', '--new-due-date',
-    type=ck.DateTime(formats=utilities.DUE_DATE_FORMAT),
-    required=False
-)
-def modify(task_id, new_description, new_priority, new_status, new_due_date):
+@ck.option('-id', '--task-id',
+           type=ck.INT, required=True)
+@ck.option('-d', '--new-description',
+           type=ck.STRING, required=False)
+@ck.option('-p', '--new-priority',
+           type=ck.Choice(utilities.PRIORITIES,
+                          case_sensitive=False),
+           required=False)
+@ck.option('-s', '--new-status',
+           type=ck.Choice(utilities.STATUS,
+                          case_sensitive=False),
+           required=False)
+@ck.option('-dd', '--new-due-date',
+           type=ck.DateTime(formats=utilities.DUE_DATE_FORMAT),
+           required=False)
+def modify(task_id, new_description,
+           new_priority, new_status,
+           new_due_date):
     """Modify a task info."""
     with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file_read:
         tasks = json.load(tasks_file_read)
@@ -39,6 +31,7 @@ def modify(task_id, new_description, new_priority, new_status, new_due_date):
         if task['id'] == task_id:
             extracted_task = task
             break
+        ck.echo("A task with the passed id doesn't exist.")
 
     task_index = tasks.index(extracted_task)
 
