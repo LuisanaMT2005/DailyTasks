@@ -1,1 +1,1 @@
-include daily_tasks/data_files/*.json
+exclude daily_tasks/data_files/*.json
