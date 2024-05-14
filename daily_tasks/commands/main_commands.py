@@ -36,18 +36,33 @@ from daily_tasks.commands import utilities
            required=False,
            help="Pass task id it belongs to if your task is a sub-task."
            )
-@ck.option('-f', '--file-path',
+@ck.option('--tasks-file-path',
            hidden=True,
            required=False,
            type=ck.STRING,
            default=utilities.TASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING."
            )
-def add(description, priority, due_date, status, sub_task, task_id, file_path=utilities.TASKS_FILE_PATH) -> None: # pylint: disable=unused-argument
+@ck.option('--subtasks-file-path',
+           hidden=True,
+           required=False,
+           type=ck.STRING,
+           default=utilities.SUBTASKS_FILE_PATH,
+           help="This option is ONLY FOR TESTING."
+           )
+def add(description, priority,
+        due_date, status,
+        sub_task, task_id,
+        tasks_file_path=utilities.TASKS_FILE_PATH,
+        subtasks_file_path=utilities.SUBTASKS_FILE_PATH
+        ) -> None: # pylint: disable=unused-argument
     """Create a new task."""
     if sub_task is False:
-        with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file_read:
-            tasks = json.load(tasks_file_read)
+        try:
+            with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
+                tasks = json.load(tasks_file_read)
+        except json.decoder.JSONDecodeError:
+            tasks = []
 
         if tasks == []:
             new_id = 1
@@ -56,7 +71,7 @@ def add(description, priority, due_date, status, sub_task, task_id, file_path=ut
             last_id = last_task['id']
             new_id = last_id + 1
 
-        priority_upper, due_date_formatted, status_capitalize = utilities.format_priority_status_and_due_date(priority, status, due_date)
+        priority_upper, status_capitalize, due_date_formatted = utilities.format_priority_status_and_due_date(priority, status, due_date)
 
         tasks.append(
             {
@@ -69,11 +84,14 @@ def add(description, priority, due_date, status, sub_task, task_id, file_path=ut
             }
         )
 
-        with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file_write:
-            json.dump(tasks, tasks_file_write, indent=2) 
+        with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
+            json.dump(tasks, tasks_file_write, indent=2)
     else:
-        with open(utilities.SUBTASKS_FILE_PATH, 'r', encoding='utf-8') as sub_tasks_file_read:
-            sub_tasks: list = json.load(sub_tasks_file_read)
+        try:
+            with open(subtasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
+                sub_tasks = json.load(tasks_file_read)
+        except json.decoder.JSONDecodeError:
+            sub_tasks = []
 
         if sub_tasks == []:
             new_id = 1
@@ -83,7 +101,7 @@ def add(description, priority, due_date, status, sub_task, task_id, file_path=ut
             new_id = last_id + 1
         
 
-        with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file_read:
+        with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
             tasks: list = json.load(tasks_file_read)
 
         for task in tasks:
@@ -113,23 +131,23 @@ def add(description, priority, due_date, status, sub_task, task_id, file_path=ut
             }
         )
 
-        with open(utilities.SUBTASKS_FILE_PATH, 'w', encoding='utf-8') as sub_tasks_file_write:
+        with open(subtasks_file_path, 'w', encoding='utf-8') as sub_tasks_file_write:
             json.dump(sub_tasks, sub_tasks_file_write, indent=2)
 
-        with open(utilities.TASKS_FILE_PATH, 'w', encoding='utf-8') as tasks_file_write:
+        with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
             json.dump(tasks, tasks_file_write, indent=2)
 
 @ck.command
-@ck.option('-f', '--file-path',
+@ck.option('--tasks-file-path',
            hidden=True,
            required=False,
            type=ck.STRING,
            default=utilities.TASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING."
            )
-def view(file_path=utilities.TASKS_FILE_PATH) -> None: # pylint: disable=unused-argument
+def view(tasks_file_path=utilities.TASKS_FILE_PATH) -> None: # pylint: disable=unused-argument
     """View all your tasks."""
-    with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
+    with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
     for task in tasks:

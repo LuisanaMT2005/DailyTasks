@@ -1,18 +1,23 @@
 """Utilities"""
 from datetime import datetime, date
 from os.path import join, dirname, abspath
+from os import environ
 import click as ck
 
 
 DUE_DATE_FORMAT = ['%Y/%m/%d']
 PRIORITIES = ['H', 'M', 'L', ' ']
 STATUS = ['To-do', 'In-progress', 'Done', ' ']
-TASKS_FILE_NAME = 'tasks.json'
-SUBTASKS_FILE_NAME = 'sub_tasks.json'
+# Productions paths
+DATA_FILES_PATH = join(environ.get('APPDATA'), 'dailytasks')
+TASKS_FILE_PATH = join(DATA_FILES_PATH, 'tasks.json')
+SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, 'sub_tasks.json')
 EXPORTED_TASKS_FILE = 'exported_tasks.json'
-DATA_FILES_PATH = join(dirname(dirname(abspath(__file__))), 'data_files')
-TASKS_FILE_PATH = join(DATA_FILES_PATH, TASKS_FILE_NAME)
-SUBTASKS_FILE_PATH = join(DATA_FILES_PATH, SUBTASKS_FILE_NAME)
+
+# Test paths
+DATA_FILES_PATH_FOR_TESTS = join(dirname(dirname(abspath(__file__))), 'data_files')
+TASKS_FILE_PATH_FOR_TESTS = join(DATA_FILES_PATH_FOR_TESTS, 'tasks.json')
+SUBTASKS_FILE_PATH_FOR_TESTS = join(DATA_FILES_PATH_FOR_TESTS, 'subtasks.json')
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
