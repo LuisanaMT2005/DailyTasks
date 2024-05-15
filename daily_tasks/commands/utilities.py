@@ -31,7 +31,7 @@ def get_due_date_default_value() -> str:
     return today_date_str_formatted
 
 
-def stylized_tasks_printing(task_id, description,
+def print_tasks(task_id, description,
                             priority, due_date,
                             status) -> None:
     if priority == PRIORITIES[0]:
@@ -103,6 +103,86 @@ def stylized_tasks_printing(task_id, description,
             ))
         else:
             ck.echo('{}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='white', bold=True),
+                ck.style(text=status, fg='green'),
+                ck.style(text=due_date, bold=True)
+            ))
+
+
+def print_subtasks(task_id, description,
+                            priority, due_date,
+                            status) -> None:
+    if priority == PRIORITIES[0]:
+        if status == STATUS[0]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='red', bold=True),
+                ck.style(text=status, fg='red'),
+                ck.style(text=due_date, bold=True)
+            ))
+        elif status == STATUS[1]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='red', bold=True),
+                ck.style(text=status, fg='yellow'),
+                ck.style(text=due_date, bold=True)
+            ))
+        else:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='red', bold=True),
+                ck.style(text=status, fg='green'),
+                ck.style(text=due_date, bold=True)
+            ))
+    elif priority == PRIORITIES[1]:
+        if status == STATUS[0]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='yellow', bold=True),
+                ck.style(text=status, fg='red'),
+                ck.style(text=due_date, bold=True)
+            ))
+        elif status == STATUS[1]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='yellow', bold=True),
+                ck.style(text=status, fg='yellow'),
+                ck.style(text=due_date, bold=True)
+            ))
+        else:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='yellow', bold=True),
+                ck.style(text=status, fg='green'),
+                ck.style(text=due_date, bold=True)
+            ))
+    else:
+        if status == STATUS[0]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='white', bold=True),
+                ck.style(text=status, fg='red'),
+                ck.style(text=due_date, bold=True)
+            ))
+        elif status == STATUS[1]:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
+                ck.style(text=task_id, fg='white'),
+                description,
+                ck.style(text=priority, fg='white', bold=True),
+                ck.style(text=status, fg='yellow'),
+                ck.style(text=due_date, bold=True)
+            ))
+        else:
+            ck.echo('     {}. {} - {} - {} - {}'.format(
                 ck.style(text=task_id, fg='white'),
                 description,
                 ck.style(text=priority, fg='white', bold=True),

@@ -51,6 +51,10 @@ def test_add_subtask():
 def test_view_tasks():
     runner = CliRunner()
     test_task_data_file = TASKS_FILE_PATH_FOR_TESTS
-    result = runner.invoke(view , ['--tasks-file-path', test_task_data_file])
+    test_subtask_data_file = SUBTASKS_FILE_PATH_FOR_TESTS
+    result = runner.invoke(view , [
+        '--tasks-file-path', test_task_data_file,
+        '--subtasks-file-path', test_subtask_data_file
+    ])
 
     assert result.exit_code == 0, f"Command failed: {result.exception}\n{result.output}"

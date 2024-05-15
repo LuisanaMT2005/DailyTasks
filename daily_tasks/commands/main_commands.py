@@ -109,7 +109,7 @@ def add(description, priority,
                 {"subtasks": [new_id]}
             )
 
-        priority_upper, due_date_formatted, status_capitalize = utilities.format_priority_status_and_due_date(priority, status, due_date)
+        priority_upper, status_capitalize, due_date_formatted = utilities.format_priority_status_and_due_date(priority, status, due_date)
 
         subtasks.append(
             {
@@ -135,22 +135,28 @@ def add(description, priority,
            required=False,
            type=ck.STRING,
            default=utilities.TASKS_FILE_PATH,
-           help="This option is ONLY FOR TESTING."
-           )
-def view(tasks_file_path=utilities.TASKS_FILE_PATH) -> None:
+           help="This option is ONLY FOR TESTING.")
+@ck.option('--subtasks-file-path',
+           hidden=True,
+           required=False,
+           type=ck.STRING,
+           default=utilities.SUBTASKS_FILE_PATH,
+           help="This option is ONLY FOR TESTING.")
+def view(tasks_file_path=utilities.TASKS_FILE_PATH,
+         subtasks_file_path=utilities.SUBTASKS_FILE_PATH) -> None:
     """View all your tasks."""
     with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
+    with open(subtasks_file_path, 'r', encoding='utf-8') as subtasks_file:
+        subtasks = json.load(subtasks_file)
+
     for task in tasks:
-
-        task_id = task['id']
-        description = task['description']
-        priority = task['priority']
-        due_date = task['due_date']
-        status = task['status']
-
-        utilities.stylized_tasks_printing(task_id, description,
-                                          priority, due_date,
-                                          status)
-        # !NOTA: Crear aquí el for de las sub-tareas.
+        utilities.print_tasks(task['id'], task['description'],
+                              task['priority'], task['due_date'],
+                              task['status'])
+        for subtask in subtasks:
+            if subtask['belongs_task'] == task['id']:
+                utilities.print_subtasks(subtask['id'], subtask['description'],
+                                         subtask['priority'], subtask['due_date'],
+                                         subtask['status'])
