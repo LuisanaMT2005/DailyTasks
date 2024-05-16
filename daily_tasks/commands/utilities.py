@@ -23,17 +23,12 @@ SUBTASKS_FILE_PATH_FOR_TESTS = join(DATA_FILES_PATH_FOR_TESTS, 'subtasks.json')
 
 def get_due_date_default_value() -> str:
     """Get default value for due_date parameter"""
-    today_datetime_obj = datetime.today()
-    today_date_obj = today_datetime_obj.date()
-    today_date_obj_formatted = today_date_obj.strftime(DUE_DATE_FORMAT[0])
-    today_date_str_formatted = str(today_date_obj_formatted)
-
-    return today_date_str_formatted
+    return str(datetime.today().date().strftime(DUE_DATE_FORMAT[0]))
 
 
-def print_tasks(task_id, description,
-                            priority, due_date,
-                            status) -> None:
+def print_tasks(task_id: int, description: str,
+                            priority: str, due_date: date,
+                            status: str) -> None:
     if priority == PRIORITIES[0]:
         if status == STATUS[0]:
             ck.echo('{}. {} - {} - {} - {}'.format(
@@ -111,9 +106,9 @@ def print_tasks(task_id, description,
             ))
 
 
-def print_subtasks(task_id, description,
-                            priority, due_date,
-                            status) -> None:
+def print_subtasks(task_id: int, description: str,
+                            priority: str, due_date: date,
+                            status: str) -> None:
     if priority == PRIORITIES[0]:
         if status == STATUS[0]:
             ck.echo('     {}. {} - {} - {} - {}'.format(
@@ -191,7 +186,7 @@ def print_subtasks(task_id, description,
             ))
 
 
-def format_priority_status_and_due_date(priority, status, due_date) -> tuple:
+def format_priority_status_and_due_date(priority: str, status: str, due_date: datetime) -> tuple:
     priority_upper: str = priority.upper()
     status_capitalize: str = status.capitalize()
 

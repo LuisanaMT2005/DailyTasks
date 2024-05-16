@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 import click as ck
 from daily_tasks.commands import utilities
@@ -43,25 +44,25 @@ from daily_tasks.commands import utilities
            type=ck.STRING,
            default=utilities.SUBTASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING.")
-def add(description, priority,
-        due_date, status,
-        sub_task, task_id,
-        tasks_file_path=utilities.TASKS_FILE_PATH,
-        subtasks_file_path=utilities.SUBTASKS_FILE_PATH) -> None:
+def add(description: str, priority: str,
+        due_date: datetime, status: str,
+        sub_task: bool, task_id: int,
+        tasks_file_path: str=utilities.TASKS_FILE_PATH,
+        subtasks_file_path: str=utilities.SUBTASKS_FILE_PATH) -> None:
     """Create a new task or subtask."""
-    if sub_task is False:
+    if sub_task is False: # Add a new task
+        # Read tasks.json file
         try:
             with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
-                tasks = json.load(tasks_file_read)
+                tasks: list = json.load(tasks_file_read)
         except json.decoder.JSONDecodeError:
-            tasks = []
+            tasks: list = []
 
+        # Get a new id for the new task
         if tasks == []:
             new_id = 1
         else:
-            last_task = tasks[-1]
-            last_id = last_task['id']
-            new_id = last_id + 1
+            new_id = tasks[-1]['id'] + 1
 
         priority_upper, status_capitalize, due_date_formatted = utilities.format_priority_status_and_due_date(priority, status, due_date)
 
@@ -76,33 +77,37 @@ def add(description, priority,
             }
         )
 
+        # Write down the modified array of tasks
         with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
             json.dump(tasks, tasks_file_write, indent=2)
-    else:
+    else: # Add a new subtask
+        # Read de subtasks.json file
         try:
             with open(subtasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
-                subtasks = json.load(tasks_file_read)
+                subtasks: list = json.load(tasks_file_read)
         except json.decoder.JSONDecodeError:
-            subtasks = []
+            subtasks: list = []
 
+        # Get a new id for the new subtask
         if subtasks == []:
             new_id = 1
         else:
-            last_sub_task = subtasks[-1]
-            last_id = last_sub_task['id']
-            new_id = last_id + 1
+            new_id = subtasks[-1]['id'] + 1
 
+        # Read the tasks.json file
         with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
             tasks: list = json.load(tasks_file_read)
 
+        # Get the task which new subtask will belongs to
         for task in tasks:
             if task['id'] == task_id:
                 extracted_task: dict = task
                 break
             raise ValueError("A task with the passed id doesn't exist.")
 
+        # Add new subtask id to property 'subtasks' of task (task which the new subtask belongs to)
         try:
-            sub_tasks_of_extracted_task: list = extracted_task['sub_tasks']
+            sub_tasks_of_extracted_task: list = extracted_task['subtasks']
             sub_tasks_of_extracted_task.append(new_id)
         except KeyError:
             extracted_task.update(
@@ -118,13 +123,15 @@ def add(description, priority,
                 "priority": f"{priority_upper}",
                 "due_date": f"{due_date_formatted}",
                 "status": f"{status_capitalize}",
-                "belongs_task": extracted_task['id']
+                "subtask_belongs": extracted_task['id']
             }
         )
 
+        # Write down the modified array of subtasks
         with open(subtasks_file_path, 'w', encoding='utf-8') as sub_tasks_file_write:
             json.dump(subtasks, sub_tasks_file_write, indent=2)
 
+        # Write down the modified array of tasks
         with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
             json.dump(tasks, tasks_file_write, indent=2)
 
@@ -142,9 +149,9 @@ def add(description, priority,
            type=ck.STRING,
            default=utilities.SUBTASKS_FILE_PATH,
            help="This option is ONLY FOR TESTING.")
-def view(tasks_file_path=utilities.TASKS_FILE_PATH,
-         subtasks_file_path=utilities.SUBTASKS_FILE_PATH) -> None:
-    """View all your tasks."""
+def view(tasks_file_path: str=utilities.TASKS_FILE_PATH,
+         subtasks_file_path: str=utilities.SUBTASKS_FILE_PATH) -> None:
+    """View all your tasks and subtasks."""
     with open(tasks_file_path, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
