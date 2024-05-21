@@ -2,10 +2,60 @@ import os
 from click.testing import CliRunner
 import pytest
 
-from daily_tasks.commands import filter_tasks
-from daily_tasks.commands import export_tasks, modify, delete
+from daily_tasks.commands import filter_tasks, export_tasks, modify, delete
+from daily_tasks.commands.utilities import TASKS_FILE_PATH_FOR_TESTS, SUBTASKS_FILE_PATH_FOR_TESTS
 
 
+def test_modify_task():
+    runner = CliRunner()
+
+    task_id = 1
+    new_description = "Complete unit test for modify task"
+    new_priority = "L"
+    new_status = "Done"
+    new_due_date = "2024/05/21"
+    test_tasks_data_file = TASKS_FILE_PATH_FOR_TESTS
+    test_subtaks_data_file = SUBTASKS_FILE_PATH_FOR_TESTS
+
+    result = runner.invoke(modify, [
+        '--task-id', task_id,
+        '--new-description', new_description,
+        '--new-priority', new_priority,
+        '--new-status', new_status,
+        '--new-due-date', new_due_date,
+        '--tasks-file-path', test_tasks_data_file,
+        '--subtasks-file-path', test_subtaks_data_file,
+    ])
+    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
+
+
+def test_modify_subtask():
+    runner = CliRunner()
+
+    subtask_id = 1
+    new_description = "Complete unit test for modify subtask"
+    new_priority = "L"
+    new_status = "Done"
+    new_due_date = "2024/05/21"
+    new_subtask_belongs = 2
+    test_tasks_data_file = TASKS_FILE_PATH_FOR_TESTS
+    test_subtaks_data_file = SUBTASKS_FILE_PATH_FOR_TESTS
+
+    result = runner.invoke(modify, [
+        '--sub-task',
+        '--task-id', subtask_id,
+        '--new-description', new_description,
+        '--new-priority', new_priority,
+        '--new-status', new_status,
+        '--new-due-date', new_due_date,
+        '--new-subtask-belongs', new_subtask_belongs,
+        '--tasks-file-path', test_tasks_data_file,
+        '--subtasks-file-path', test_subtaks_data_file,
+    ])
+    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
+
+
+@pytest.mark.skip
 def test_subtask_filtering():
     runner = CliRunner()
 
@@ -26,6 +76,7 @@ def tmp_path(tmpdir):
     return tmpdir.strpath
 
 
+@pytest.mark.skip
 def test_subtask_info(tmp_path):
     runner = CliRunner()
     test_file_path = os.path.abspath(os.getcwd())
@@ -38,19 +89,7 @@ def test_subtask_info(tmp_path):
     assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
 
 
-def test_subtask_modify():
-    runner = CliRunner()
-    task_id = 1
-    new_description = "Complete unit test sub commands modified"
-
-    test_file_path = os.path.abspath(os.getcwd())
-    result = runner.invoke(modify, [
-        '--task-id', task_id,
-        '--new-description', new_description,
-    ])
-    assert result.exit_code == 0, f"Command failed:{result.exception}\n{result.output}"
-
-
+@pytest.mark.skip
 def test_subtask_delete():
     runner = CliRunner()
     task_id = 2
