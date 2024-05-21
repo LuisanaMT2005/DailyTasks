@@ -54,7 +54,6 @@ def modify(task_id, new_description,
             if task['id'] == task_id:
                 extracted_task = task
                 break
-            ck.echo("A task with the passed id doesn't exist.")
 
         task_index = tasks.index(extracted_task)
 
@@ -81,14 +80,16 @@ def modify(task_id, new_description,
         with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
             json.dump(tasks, tasks_file_write, indent=2)
     else:
-        with open(subtasks_file_path, 'r', encoding='utf-8') as tasks_file_read:
-            subtasks = json.load(tasks_file_read)
+        with open(subtasks_file_path, 'r', encoding='utf-8') as subtasks_file_read:
+            subtasks = json.load(subtasks_file_read)
+
+        with open(tasks_file_path, 'r', encoding="utf-8") as tasks_file_read:
+            tasks = json.load(tasks_file_read)
 
         for subtask in subtasks:
             if subtask['id'] == task_id:
                 extracted_subtask = subtask
                 break
-            ck.echo("A task with the passed id doesn't exist.")
 
         subtask_index = subtasks.index(extracted_subtask)
 
@@ -109,15 +110,26 @@ def modify(task_id, new_description,
 
             extracted_subtask['due_date'] = new_due_date_formatted
 
-        if new_subtask_belongs: # INCOMPLETO
-            extracted_subtask['subtask_belongs'] = new_subtask_belongs
-            # Cargar las tasks
-            # Revisar cada tarea buscando cual tiene el valor de extracted_subtask['subtask_belongs'] como id
-            # Entrar a al valor task['subtasks']
-            # Eliminar el número que sea igual que el extracted_subtask['id'] de la tarea que se esta modificando
+        if new_subtask_belongs:
+            for task in tasks:
+                if task['id'] == extracted_subtask['belongs_task']:
+                    task['subtasks'].remove(extracted_subtask['id'])
+
+                if task['id'] == new_subtask_belongs:
+                    try:
+                        task['subtasks'].append(extracted_subtask['id'])
+                    except KeyError:
+                        task.update(
+                            {'subtasks': [extracted_subtask['id']]}
+                        )
+            
+            extracted_subtask['belongs_task'] = new_subtask_belongs
 
         subtasks.pop(subtask_index)
         subtasks.insert(subtask_index, extracted_subtask)
 
-        with open(subtasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
-            json.dump(subtasks, tasks_file_write, indent=2)
+        with open(subtasks_file_path, 'w', encoding='utf-8') as subtasks_file_write:
+            json.dump(subtasks, subtasks_file_write, indent=2)
+
+        with open(tasks_file_path, 'w', encoding='utf-8') as tasks_file_write:
+            json.dump(tasks, tasks_file_write, indent=2)
