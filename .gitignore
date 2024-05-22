@@ -2,9 +2,12 @@
 venv/
 pruebas_click/
 *.json
+!tasks.json
+!subtasks.json
 __pycache__/
 .pytest_cache/
 datetime_to_date.py
+debug.py
 
 # Distribution
 *.egg-info/
