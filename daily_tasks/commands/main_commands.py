@@ -163,7 +163,7 @@ def view(tasks_file_path: str=utilities.TASKS_FILE_PATH,
                               task['priority'], task['due_date'],
                               task['status'])
         for subtask in subtasks:
-            if subtask['belongs_task'] == task['id']:
+            if subtask['subtask_belongs'] == task['id']:
                 utilities.print_subtasks(subtask['id'], subtask['description'],
                                          subtask['priority'], subtask['due_date'],
                                          subtask['status'])
