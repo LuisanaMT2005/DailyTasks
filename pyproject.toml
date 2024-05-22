@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dailytasks"
-version = "2.3.0"
+version = "2.5.0"
 authors = [{name = "LuisanaMTDev", email = "luisanamartineztorres25@gmail.com"}]
 description = "A tasks manager for those who like work from shell."
 readme = "README.md"
@@ -18,14 +18,9 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "click>=8.1.7",
-    "colorama>=0.4.6"
+    "click==8.1.7",
+    "colorama==0.4.6"
 ]
 
 [project.scripts]
 dailytasks = "daily_tasks.commands.main:daily_tasks"
-
-[tool.setuptools]
-packages = ["daily_tasks"]
-include-package-data = true
-package-data = { "data_files" = ["*.json"]}
