@@ -11,16 +11,16 @@ from daily_tasks.commands.main_commands import add
                         dir_okay=True,
                         resolve_path=True),
            required=True)
-def export_tasks(export_path):
-    """Export your tasks."""
+def export_tasks(export_path: str):
+    """
+    Export your tasks, if you use dailytasks less than 3.0.0 version.
+    """
 
     with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
         tasks = json.load(tasks_file)
 
-    with open(join(export_path, utilities.EXPORTED_TASKS_FILE), 'w', encoding='utf-8') as exported_tasks_file:
+    with open(join(export_path,utilities.EXPORTED_TASKS_FILE), 'w', encoding='utf-8') as exported_tasks_file:
         json.dump(tasks, exported_tasks_file, indent=2)
-
-    # !NOTA: Agregar código para exportar las sub-tareas.
 
 
 @ck.command
@@ -42,17 +42,19 @@ def export_tasks(export_path):
            Or where your json file with tasks that you want add is
            (to pass this json file use -a flag).""")
 @ck.pass_context
-def import_tasks(ctx, import_path,
-                 file_name: str | None, description_key: str | None,
-                 add_tasks=False):
-    """Import your tasks."""
+def import_tasks(ctx, import_path: str,
+                 file_name: str, description_key: str,
+                 add_tasks: bool=False):
+    """
+    Import your tasks.
+    """
 
     with open(utilities.TASKS_FILE_PATH, 'r', encoding='utf-8') as tasks_file:
-        existing_tasks = json.load(tasks_file)
+        existing_tasks: list[dict] = json.load(tasks_file)
 
     if add_tasks is False:
         with open(join(import_path, utilities.EXPORTED_TASKS_FILE), 'r', encoding='utf-8') as imported_tasks_file:
-            tasks = json.load(imported_tasks_file)
+            tasks: list[dict] = json.load(imported_tasks_file)
 
         for task in tasks:
             existing_tasks.append(task)
@@ -63,7 +65,7 @@ def import_tasks(ctx, import_path,
         # !NOTA: Agregar código para importar las sub-tareas.
     else:
         with open(join(import_path, f'{file_name}.json'), 'r', encoding='utf-8') as new_tasks_file:
-            new_tasks = json.load(new_tasks_file)
+            new_tasks: list[dict] = json.load(new_tasks_file)
 
         new_tasks_descriptions = []
 
